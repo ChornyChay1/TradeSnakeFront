@@ -1,0 +1,392 @@
+.bot-settings{
+    background: #f1f1f1;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+}
+.bot-settings-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 90%;
+    align-items: center;
+    gap:40px;
+    padding:20px;
+    height: auto;
+}
+.bot-settings-container-workarea{
+    display: flex;
+    flex-direction: row;
+    gap:10%;
+    width: 100%;
+}
+.visualisation-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+    gap:50px;
+    width: 60%;
+    height: 100%;
+
+}
+.visualisation-container-chart{
+    display: flex;
+    flex-direction: column;
+    padding:20px;
+    background: #ffffff;
+    width: 100%;
+    border-radius: 13px;
+    -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+}
+
+
+.options-bar{
+    width: 29%;
+    min-height: 400px;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    letter-spacing: 0.1em;
+    font-size: 16px;
+    gap:10px;
+}
+.option{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap:10px;
+    background-color: #ffffff;
+    border-radius: 13px;
+    padding:20px;
+    -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    width:100%;
+}
+.button-bottom-bar{
+    display: flex;
+    align-self: flex-end;
+    margin-right: 5%;
+    height: 40px;
+}
+.profit-bar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.bot-statistics-more-button{
+    height: 15px;
+    width:50px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    justify-self: center;
+    align-items: center;
+}
+
+
+.input-group{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap:10px;
+
+}
+.input-group select{
+    letter-spacing: 0.1em;
+    padding: 7px;
+    background-color: #101010;
+    color:white;
+
+    border-radius: 6px;
+    border:none
+}
+.input-group input{
+    letter-spacing: 0.1em;
+    padding: 7px;
+    color:black;
+    border-radius: 6px;
+    border:1px solid black;
+    background-color: #ffffff;
+}
+
+
+
+.bottom-bar{
+    width: 100%;
+    padding:20px;
+
+    max-height: 100%;
+    background-color: #ffffff;
+    border-radius: 13px;
+    -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    gap:20px;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: start;
+    letter-spacing: 0.1em;
+    font-size: 16px;
+}
+.indicator-config{
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+
+    h2{
+        font-size: var(--h2-text);
+        font-weight: normal;
+        padding: 10px;
+    }
+
+    .option-config{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        border-bottom: 1px solid black;
+        align-self: center;
+        gap:10px;
+        padding:5px;
+        width:90%;
+        margin-top:10px;
+        select{
+            letter-spacing: 0.1em;
+            padding: 7px;
+            background-color: #101010;
+            color:white;
+            border-radius: 6px;
+            border:none
+        }
+        input{
+            letter-spacing: 0.1em;
+            padding: 7px;
+            color:black;
+            border-radius: 6px;
+            border:1px solid black;
+            background-color: #ffffff;
+        }
+        input[type="color"] {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: 40px;
+            height: 40px;
+            padding: 3px;
+            border-radius: 6px;
+            background: none;
+            cursor: pointer;
+            border:1px solid black;
+        }
+    }
+}
+.indicator-item{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    span{
+        text-align: center;
+        align-self: center;
+    }
+}
+.indicator-buttons{
+    display: flex;
+    flex-direction: row;
+    gap:10px;
+}
+
+.arrow-icon {
+    height: 100%;
+    transition: transform 0.3s ease-in-out;
+    display: flex;
+    align-self: center;
+    justify-self: center;
+    margin:auto;
+}
+
+.arrow-icon.rotated {
+    transform: rotate(180deg);
+}
+.statistic-container {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transform: translateY(-10px);
+    transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.statistic-container.visible {
+    max-height: 500px; /* Достаточно большое значение, чтобы вместить контент */
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.statistic-block {
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 10px;
+}
+
+.arrow-icon {
+    height: 100%;
+    transition: transform 0.3s ease-in-out;
+    display: flex;
+    align-self: center;
+    justify-self: center;
+    margin: auto;
+}
+
+.arrow-icon.rotated {
+    transform: rotate(180deg);
+}
+
+.delete-button{
+    height: 25px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+.delete-button:hover {
+    transform:scale(1.2);
+}
+.settings-button {
+    height: 25px;
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.settings-button:hover {
+    transform: scale(1.2);
+}
+
+.settings-button.rotated {
+    transform: rotate(180deg);
+}
+
+.settings-button.rotated:hover {
+    transform: scale(1.2) rotate(180deg);
+}
+
+.settings-content {
+    max-height: 0;
+    opacity: 0;
+    transform: translateY(-10px);
+    overflow: hidden;
+    transition: opacity 0.3s ease, transform 0.3s ease, max-height 0.3s ease;
+}
+
+.settings-content.open {
+    max-height: 200px; /* Подбирай под контент */
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+.settings-row {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    gap:10px;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100000;
+    overflow: hidden; /* Чтобы все, что выходит за пределы, не отображалось */
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Фон с прозрачностью */
+    transition: background-color 0.3s ease;
+}
+
+.overlay:hover {
+    background-color: rgba(0, 0, 0, 0.7); /* Затемнение фона при наведении */
+}
+
+.modal-content {
+    position: relative;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 500px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1; /* Содержимое поверх оверлея */
+}
+
+.indicators {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 50%;
+}
+
+.close-button-modal {
+    margin-top: 20px;
+    width: 70%;
+}
+.bots-settings-header{
+    font-size: var(--h2-text);
+    font-weight: normal;
+    justify-self:start;
+    align-self:start;
+    padding: 0 0 0 15px;
+    margin:0;
+}
+.input-group-addon{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+.strategy-message {
+    font-size: var(--small-text);
+    margin-top: 10px;
+    padding: 5px;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.strategy-message.positive {
+    color: #28a745; /* Зелёный цвет */
+    background-color: #e8f5e9; /* Светло-зелёный фон */
+}
+
+.strategy-message.negative {
+    color: #dc3545; /* Красный цвет */
+    background-color: #f8d7da; /* Светло-красный фон */
+}
+
+.strategy-message::before {
+    content: "* "; /* Добавляем звёздочку перед текстом */
+}

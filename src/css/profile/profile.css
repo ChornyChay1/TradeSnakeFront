@@ -1,0 +1,464 @@
+.main-profile{
+    background: #f1f1f1;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+.profile-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: auto;
+    background-color: #016c3e;
+    width: 100%;
+    font-size: var(--small-text);
+    padding-top:5px;
+    padding-bottom:5px;
+
+}
+.profile-header-row{
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    color:white;
+    align-self: center;
+    justify-content: space-between;
+    a{
+        cursor: pointer;
+        transition: 500ms;
+    }
+    a:hover{
+        color:red;
+    }
+}
+.navigation-row{
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    justify-content: start;
+    gap:50px;
+
+    a:hover{
+        text-decoration-line: underline;
+        text-underline-offset: 5px;
+
+    }
+}
+.active-link{
+    text-decoration-line: underline;
+    text-underline-offset: 5px;
+}
+.main-profile{
+    width: 100%;
+}
+.profile-logo-img{
+    height: 50px;
+}
+.exit-button{
+    display: flex;
+    align-self: center;
+}
+.main-profile-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 90%;
+    align-items: center;
+    gap:20px;
+    padding:20px;
+    height: auto;
+
+}
+.profile-info-row-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 99.5%;
+    background-color: #1d1d1d;
+    border-radius: 13px;
+    padding:0.5%;
+    min-height: 50px;
+    color:white;
+
+}
+.profile-info-name{
+    display: flex;
+    flex-direction: row;
+    padding-left:10px;
+    gap:50px;
+    cursor:default;
+
+}
+.profile-info-balance{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap:50px;
+    padding-right:10px;
+    cursor:default;
+}
+.name-and-progress{
+    display: flex;
+    flex-direction: row;
+    gap:20px;
+}
+
+.recharge-button{
+    width: auto;
+    height: 40px;
+}
+.name-and-progress{
+    width:auto;
+    height:auto;
+    gap:20px;
+
+}
+.progress-image-container{
+    display: flex;
+    flex-direction: row;
+    gap:10px;
+    align-items: start;
+    img{
+        height: 50px;
+    }
+}
+.main-profile-container-content{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    gap:40px;
+}
+
+.main-profile-content-statistic-col{
+    display: flex;
+    flex-direction: column;
+    border-radius: 13px;
+    gap:30px;
+    width: 70%;
+
+}
+.chart-profit-container{
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    border-radius: 13px;
+    -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    width: 99%;
+    height: auto;
+    padding:0.5%;
+
+    h2{
+    font-size:var(--h2-text);
+        font-weight:normal;
+        padding: 0 0 0 10px;
+    }
+}
+.statistic-container-profile{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #ffffff;
+    border-radius: 13px;
+    width: 100%;
+    height: auto;
+}
+.diagramma-column{
+    width:200px;
+}
+.text-statistic-column{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: start;
+    padding:10px;
+    width: 45%;
+    text-wrap: wrap;
+.statistics-grid {
+    display: flex;
+    gap: 5px;
+    font-size: var(--middle-text);
+}
+
+.statistic-labels,
+.statistic-values {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+    h2{
+        padding-left:5px;
+        padding-top:10px;
+        padding-bottom:20px;
+        font-size: var(--h2-text);
+        font-weight:normal;
+        margin:0;
+    }
+    p{
+        padding:5px;
+        margin:0;
+    }
+}
+.main-profile-content-log-col{
+    display: flex;
+    flex-direction: column;
+    background-color: #FFFFFF;
+    -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    border-radius: 13px;
+    width: 30%;
+    max-height: 800px;
+    h2{
+        font-size:var(--h2-text);
+        font-weight: normal;
+        padding-left: 5%;
+    }
+}
+.profile-footer{
+    margin-top:auto;
+    display: flex;
+    background-color: #1d1d1d;
+    justify-self: flex-end;
+    align-self: flex-end;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.footer-row{
+    display: flex;
+    flex-direction: row;
+    color:white;
+    text-align: center;
+    justify-content: space-between;
+    width: 80%;
+}
+.trade-action-indicator {
+    display: inline-block;
+    width: 4px;
+    height: var(--middle-text);
+    margin-right: 10px;
+}
+.logs{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    padding:20px;
+    height: 100%;
+    overflow: auto
+}
+.logs-list{
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+    justify-content: start;
+}
+.log-item{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+}
+.diagramma-column {
+    position: relative;
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.diagramma-center-text {
+    position: absolute;
+    top: 28%;
+    left: 31%;
+    transform: translate(-50%, -100%);
+    font-size: 18px;
+    text-align: center;
+    width: 200px;
+    color: black;
+    opacity: 0; /* Начальная невидимость */
+    animation: fadeIn 1.5s forwards; /* Применяем анимацию */
+    cursor: default;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+.buttons {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-top: -20px;
+}
+
+.buttons button {
+    position: relative;
+    width: auto;
+    height: 40px;
+    border: none;
+    border-radius: 20px;
+    background: lightgray;
+    margin: 5px;
+    font-size: 16px;
+    text-wrap: nowrap;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out, background 0.3s ease-in-out;
+}
+
+/* Расположение кнопок в полукруг */
+.buttons button:nth-child(1) {
+    transform: translateY(-60px);
+
+}
+.buttons button:nth-child(2) {
+    transform: translateY(-10px);
+}
+.buttons button:nth-child(3) {
+    transform: translateY(-60px);
+}
+
+/* Анимация при смене активной кнопки */
+.buttons button.selected {
+    background: #171717;
+    color: white;
+    transform: translateY(-25px) ;
+
+}
+
+.profile-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+}
+
+/* Оверлей для затемнения */
+.profile-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    transition: background 0.3s ease; /* Плавное затемнение */
+}
+@keyframes fall {
+    0% {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+.fade-in {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.balance-animation {
+    animation: fall 0.5s ease-out;
+}
+/* При наведении на оверлей фон затемняется */
+.profile-modal-overlay:hover {
+    background: rgba(0, 0, 0, 0.7);
+    cursor: pointer;
+}
+.profile-exit-modal-button{
+    width: auto;
+    background-color: white;
+    padding:0;
+    position: absolute;
+    top:30px;
+    right:30px;
+    transition: 0.3s;
+}
+.profile-exit-modal-button:hover{
+    color:red;
+}
+/* Форма, которая расположена выше оверлея */
+.profile-modal-content {
+    position: relative;
+    top: 30%;
+    left: 40%;
+    z-index: 1;
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    label{
+        color:black;
+    }
+}
+
+ .profile-modal-content h2 {
+    font-size: var(--h2-text);
+    font-weight: normal;
+     color:black;
+}
+
+.profile-modal-content input {
+    width: 50%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+}
+.profile-modal-input-group{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap:20px;
+    text-align: center;
+    align-items: center;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-around;
+    width: 100px;
+    margin-top: 15px;
+}
+.tooltip-profile{
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 5px;
+    border-radius: 4px;
+    width:300px;
+    font-size: 14px;
+    z-index: 1000;
+    pointer-events: none;
+}

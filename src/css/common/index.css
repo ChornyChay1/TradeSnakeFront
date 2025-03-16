@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: 0.03rem;
+  color:white;
+}
+a {
+  text-decoration: none; /* Убирает подчеркивание */
+  color: inherit; /* Делает цвет текста ссылки таким же, как у родителя */
+  font-weight: inherit; /* Унаследует толщину шрифта */
+}
+code {
+  font-family: 'Montserrat', monospace;
+}
+input{
+  font-size: var(--middle-text);
+  background-color: transparent;
+}
+:root {
+  --back-color: #FF000000;
+  --white-color: rgba(251, 251, 251, 0.98);
+  --dark-violet: #A952A3;
+  --violet: #AF94E7;
+  --light-violet: #efeefb;
+  --accent-text: #F8FFD4;
+  --border-block: 10px;
+  --border-button: 10px;
+  --accent: #DA2423;
+  --dark-blue: #1A1C45;
+  --large-text: 29px;
+  --middle-text: 16px;
+  --h2-text: 19px;
+
+  --small-text: 15px;
+  --background: #000017;
+}
+
+@media (max-width: 600px) {
+  :root {
+    --border-block: 40px;
+    --border-button: 40px;
+    --large-text: 2em;
+    --middle-text: 1em;
+    --small-text: 0.5em;
+  }
+}

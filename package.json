@@ -1,0 +1,58 @@
+{
+  "name": "diplom-tester",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/node": "^16.18.97",
+    "@types/react": "^18.3.2",
+    "@types/react-dom": "^18.3.0",
+    "@types/react-router-dom": "^5.3.3",
+    "d3": "^7.9.0",
+    "framer-motion": "^12.5.0",
+    "js-cookie": "^3.0.5",
+    "lightweight-charts": "^4.2.2",
+    "lucide-react": "^0.479.0",
+    "moment": "^2.30.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-google-charts": "^5.2.1",
+    "react-router-dom": "^6.23.1",
+    "react-scripts": "5.0.1",
+    "react-swipeable-list": "^1.9.3",
+    "recharts": "^2.15.1",
+    "typescript": "^4.9.5",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/google.visualization": "^0.0.74",
+    "@types/jest": "^29.5.12",
+    "jest": "^27.5.1"
+  }
+}

@@ -1,0 +1,96 @@
+.main-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+.main-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 90%;
+    background-color: white;
+    align-items: center;
+    padding:10px;
+}
+.enter-button{
+    width:100px;
+    height:30px;
+}
+.main-logo{
+    display: flex;
+    height:50px
+}
+.main-page-container {
+    background-image: url("../../img/main-page-img.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: right;
+    background-clip: content-box;
+    min-height: 100vh; /* Используем 100% от высоты экрана */
+    width: 100%;
+    display: flex;
+    justify-content: start;
+}
+.main-page-text-column{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    color:white;
+    width:40%;
+    margin-left:5%;
+    margin-top:11%;
+    gap:10px;
+    h1{
+        font-size: var(--large-text);
+        letter-spacing: 0.1em;
+        text-align: start;
+        text-shadow: 1px 1px 3px #000000;
+    }
+    p{
+        text-shadow: 1px 1px 2px #000000;
+
+    }
+}
+.main-page-button-go{
+    width: 200px;
+    height:50px;
+}
+.main-page-footer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    padding-top:20px;
+    padding-bottom:20px;
+    background-color: #000000;
+    color:white;
+    justify-content: center;
+    text-align: center;
+    p{
+        font-size: var(--small-text);
+        padding: 0;
+        margin: 0;
+    }
+}
+@media (max-width: 912px) {
+
+    .main-page-text-column{
+        width:90%;
+        margin-left:5%;
+        margin-right:5%;
+        margin-top:25%;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        h1{
+            text-align: center;
+        }
+    }
+    .main-logo{
+        height:35px;
+    }
+
+
+}
+

@@ -1,0 +1,16 @@
+
+.chart-container-light{
+  position: relative;
+  width: 50vw;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  letter-spacing: 0.1em;
+}
+.rsi-chart {
+  margin-top: 20px;
+  height: 150px;
+  margin-right: 0;
+}

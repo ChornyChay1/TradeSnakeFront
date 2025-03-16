@@ -1,0 +1,19 @@
+button{
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    border-radius: 10px;
+    letter-spacing: 0.1em;
+    font-size: var(--middle-text);
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+button:hover{
+    transform: scale(1.1);
+}
+
+.button-black{
+    color:white;
+    background-color: black;
+}
