@@ -101,6 +101,9 @@
     p{
         flex:2;
     }
+    h2{
+        flex:2;
+    }
 }
 .visualisation-container-chart-start{
     display: flex;
@@ -114,12 +117,18 @@
     -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
     -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
     box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
-}.bot-option-container {
+}
+.bot-option-container {
      display: grid;
      grid-template-columns: repeat(2, 1fr); /* Две колонки */
      gap: 20px;
      width: 100%;
      margin-top: 10px;
+
+    h2{
+        margin-top:15px;
+        margin-bottom:15px;
+    }
  }
 
 .bot-option-column {
@@ -141,4 +150,103 @@
 h2 {
     font-size: var(--h2-text);
     font-weight: normal;
+
 }
+.update-bot-first-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+
+    h1{
+        font-weight: normal;
+        font-size: var(--h2-text);
+    }
+}
+.edit-button{
+    width: 25px;
+}
+.managment-button-group{
+    display: flex;
+    flex-direction: row;
+    gap:20px;
+}
+.bot-name-group {
+    display: flex;
+    flex-direction: row;
+    gap:20px;
+    padding-left:20px;
+}
+.switch-button-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap:5px;
+    transition: 0.3s;
+}
+.switch-button-container:hover{
+    transform:scale(1.1);
+    color:red;
+}
+.power-button{
+    width: 15px;
+}
+.delete-bot-button{
+     color:red;
+    padding-right: 20px;
+    transition: 0.3s;
+
+}
+.delete-bot-button:hover{
+    transform: scale(1.1);
+}
+.bot-name-group{
+    input{
+        width:400px;
+        padding-left:10px;
+        border:1px solid #004500;
+        border-radius:13px;
+    }
+}
+.edit-buttons{
+    display: flex;
+    flex-direction: row;
+    gap:10px;
+}
+.cancel-button{
+    background-color: #1d1d1d;
+    color:white;
+    border:none;
+}
+.save-button{
+    background-color:#28a745;
+    color:white;
+    border:none;
+    width: 70px;
+}
+.chart-buttons{
+    display: flex;
+}
+/* Анимация появления текста сверху */
+@keyframes slideInFromTop {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Класс для применения анимации */
+.animated-text {
+    animation: slideInFromTop 0.5s ease-out forwards;
+}
+
+/* Задержка для каждого элемента */
+.animated-text.delay-1 { animation-delay: 0.1s; }
+.animated-text.delay-2 { animation-delay: 0.2s; }
+.animated-text.delay-3 { animation-delay: 0.3s; }
+.animated-text.delay-4 { animation-delay: 0.4s; }
+.animated-text.delay-5 { animation-delay: 0.5s; }

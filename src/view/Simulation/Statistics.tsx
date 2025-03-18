@@ -16,7 +16,7 @@ const Statistics: React.FC<StatisticsProps> = ({ statistic, showStatistic, toggl
     return (
         <div className="option">
             <div className="profit-bar">
-                <p>Прибыль: {statistic.profit_percent.toFixed(2)}%</p>
+                <p>Чистая рибыль: {statistic.total_profit.toFixed(2)}%</p>
                 <div className="bot-statistics-more-button" onClick={toggleStatistic} style={{ cursor: "pointer" }}>
                     <img
                         src={arrow_img}
@@ -35,7 +35,6 @@ const Statistics: React.FC<StatisticsProps> = ({ statistic, showStatistic, toggl
                     <p>Сумма покупки без комиссии: {statistic.buy_sum.toFixed(2)}</p>
                     <p>Сумма продажи без комиссии: {statistic.sell_sum.toFixed(2)}</p>
                     <p>Прибыль без комиссии: {statistic.total_profit_without_broker.toFixed(2)}</p>
-                    <p>Чистая прибыль: {statistic.total_profit.toFixed(2)}</p>
 
                     {/* Блок с сообщением о пригодности стратегии */}
                     <div className={`strategy-message ${isStrategySuitable ? "positive" : "negative"}`}>

@@ -44,7 +44,13 @@ const BotsPageMain = () => {
     const [cryptoBotProfitData, setCryptoBotProfitData] = useState<BotProfitResponse[]>([]);
     const [forexBotProfitData, setForexBotProfitData] = useState<BotProfitResponse[]>([]);
     const [stocksBotProfitData, setStocksBotProfitData] = useState<BotProfitResponse[]>([]);
-
+    useEffect(() => {
+        if (userStatistics.money) {
+            setAnimateBalance(true);
+            const timer = setTimeout(() => setAnimateBalance(false), 500);
+            return () => clearTimeout(timer);
+        }
+    }, [userStatistics.money]);
     useEffect(() => {
         const fetchData = async () => {
             const userViewModel = UserViewModel.getInstance();

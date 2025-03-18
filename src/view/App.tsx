@@ -11,6 +11,7 @@ import MainProfile from "./Profile/MainProfile";
 import BotsPageMain from "./BotsPage/BotsPageMain";
 import SimulationPage from "./Simulation/SimulationPage";
 import StartBotPage from "./StartBot/StartBotPage";
+import UpdateBotPage from "./UpdateBot/UpdateBotPage";
 
 function App() {
     return (
@@ -31,6 +32,7 @@ function App() {
                     <Route path="/bots" element={<BotsPageMain />} />
                     <Route path="/simulation" element={<SimulationPage />} />
                     <Route path="/create-bot" element={<StartBotPage />} />
+                    <Route path="/bot-settings/:bot_id" element={<UpdateBotPage />} />
 
 
 

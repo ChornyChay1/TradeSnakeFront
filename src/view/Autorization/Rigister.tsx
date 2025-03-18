@@ -47,7 +47,6 @@ const Register: React.FC = () => {
             }
 
             const result = await response.json();
-            console.log("Успешная регистрация:", result);
             setInfo("Успешно");
             setError(null)
             setTimeout(() => {

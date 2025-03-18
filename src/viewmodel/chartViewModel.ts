@@ -56,62 +56,55 @@ export class ChartViewModel {
         }));
     }
 
-    // Метод для получения результатов тестирования стратегии MA
-    public async fetchTestingBotResultWithMA(
-        symbol: string,
-        startDate: string,
-        endDate: string,
-        maPeriod: number,
-        maQuantity: number
-    ): Promise<void> {
-        const url = `http://localhost:8000/test_strategy?symbol=${symbol}&start_date=${startDate}&end_date=${endDate}&period=${maPeriod}&quantity=${maQuantity}&strategy_type=moving_average`;
-        const result = await this.fetchData(url);
-        this.chartData = this.formatChartData(result.data);
-        this.profitData = result.statistic[0];
-    }
+    // Метод для получения исторических данных бота
+    public async fetchBotHistorical(bot_id: number): Promise<void> {
+        try {
+            const url = "http://localhost:8000/utils/bot_historical";
 
-    // Метод для получения результатов тестирования стратегии Double MA
-    public async fetchTestingBotResultWithDoubleMA(
-        symbol: string,
-        startDate: string,
-        endDate: string,
-        maShortPeriod: number,
-        maLongPeriod: number,
-        maQuantity: number
-    ): Promise<void> {
-        const url = `http://localhost:8000/test_strategy?symbol=${symbol}&start_date=${startDate}&end_date=${endDate}&shortPeriod=${maShortPeriod}&longPeriod=${maLongPeriod}&quantity=${maQuantity}&strategy_type=double_moving_average`;
-        const result = await this.fetchData(url);
-        this.chartData = this.formatChartData(result.data);
-        this.profitData = result.statistic[0];
-    }
+            const response = await fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                credentials: "include", // Для передачи куки (сессии пользователя)
+                body: JSON.stringify({ bot_id }),
+            });
 
-    // Метод для получения результатов тестирования стратегии Triple MA
-    public async fetchTestingBotResultWithTripleMA(
-        symbol: string,
-        startDate: string,
-        endDate: string,
-        maQuantity: number
-    ): Promise<void> {
-        const url = `http://localhost:8000/test_strategy?symbol=${symbol}&start_date=${startDate}&end_date=${endDate}&quantity=${maQuantity}&strategy_type=triple_moving_average`;
-        const result = await this.fetchData(url);
-        this.chartData = this.formatChartData(result.data);
-        this.profitData = result.statistic[0];
-    }
+            if (!response.ok) {
+                throw new Error(`Failed to fetch bot historical data: ${response.statusText}`);
+            }
 
-    // Метод для получения результатов тестирования стратегии Trend
-    public async fetchTestingBotResultWithTrand(
-        symbol: string,
-        startDate: string,
-        endDate: string,
-        maShortPeriod: number,
-        maLongPeriod: number,
-        maQuantity: number,
-        rsiPeriod: number
-    ): Promise<void> {
-        const url = `http://localhost:8000/test_strategy?symbol=${symbol}&start_date=${startDate}&end_date=${endDate}&shortPeriod=${maShortPeriod}&longPeriod=${maLongPeriod}&quantity=${maQuantity}&rsi_period=${rsiPeriod}&strategy_type=trand_strategy`;
-        const result = await this.fetchData(url);
-        this.chartData = this.formatChartData(result.data);
-        this.profitData = result.statistic[0];
+            const result = await response.json();
+
+            if (!Array.isArray(result.historical_results)) {
+                throw new Error("Invalid response format: 'historical_results' should be an array.");
+            }
+
+            // Форматируем данные для графика
+            this.chartData = result.historical_results.map((item: any) => ({
+                time: Number(item.timestamp) / 1000, // Преобразуем в число
+                open: item.open,
+                high: item.high,
+                low: item.low,
+                close: item.close,
+                sell: item.sell && Object.keys(item.sell).length > 0 ? {
+                    broker_price: item.sell.broker_price,
+                    price: item.sell.price,
+                    quantity: item.sell.quantity
+                } : null,
+                buy: item.buy && Object.keys(item.buy).length > 0 ? {
+                    broker_price: item.buy.broker_price,
+                    price: item.buy.price,
+                    quantity: item.buy.quantity
+                } : null
+            }));
+
+            // Сохраняем данные о прибыли
+            this.profitData = result.bot_summary;
+        } catch (error) {
+            console.error("Failed to fetch bot historical data", error);
+            throw error;
+        }
     }
 
     // Метод для получения данных графика
@@ -171,6 +164,52 @@ export class ChartViewModel {
                 } : null
             }));
                 this.profitData = result.bot_summary;
+
+
+        } catch (error) {
+            console.error("Failed to fetch strategy results:", error);
+        }
+    }
+
+    public async fetchBotHistory(botId: number): Promise<void> {
+        try {
+            const response = await fetch(`http://localhost:8000/utils/get_combined_data?bot_id=${botId}`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                credentials: "include"
+            });
+
+            if (!response.ok) {
+                const errorResponse = await response.json();
+                throw new Error(errorResponse.detail || `Failed to fetch strategy results (Status: ${response.status})`);
+            }
+
+            const result = await response.json();
+
+            if (!Array.isArray(result.results)) {
+                throw new Error("Invalid response format: 'results' should be an array.");
+            }
+
+            this.chartData = result.results.map((item: any) => ({
+                time: Number(item.timestamp)/1000, // Преобразуем в число
+                open: item.open,
+                high: item.high,
+                low: item.low,
+                close: item.close,
+                sell: item.sell && Object.keys(item.sell).length > 0 ? {
+                    broker_price: item.sell.broker_price,
+                    price: item.sell.price,
+                    quantity: item.sell.quantity
+                } : null,
+                buy: item.buy && Object.keys(item.buy).length > 0 ? {
+                    broker_price: item.buy.broker_price,
+                    price: item.buy.price,
+                    quantity: item.buy.quantity
+                } : null
+            }));
+            this.profitData = result.bot_summary;
 
 
         } catch (error) {

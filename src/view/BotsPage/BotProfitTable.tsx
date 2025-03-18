@@ -72,8 +72,13 @@ export default function BotProfitTable({ title, bots,is_open=false }: Props) {
                                     <td>{bot.create_time}</td>
                                     <td className="font-bold">{bot.profit.toFixed(2)}$</td>
                                     <td>
-                                        <img className="cursor-pointer" src={settings_image} alt="settings-button" onClick={()=>{navigate("/bot-settings")}} />
-                                    </td>
+                                        <img
+                                            className="cursor-pointer"
+                                            src={settings_image}
+                                            alt="settings-button"
+                                            onClick={() => navigate(`/bot-settings/${bot.bot_id}`)}
+                                        />
+                                        </td>
                                 </tr>
                             ))}
                             </tbody>

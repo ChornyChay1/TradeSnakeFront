@@ -204,14 +204,11 @@ const StartBotPage = () => {
                 brokerId // Передаём brokerId
             );
 
-            console.log("Bot created successfully:", response);
             setBotResult(true); // Успешное создание бота
             setModalOpen(true); // Открываем модальное окно
         } catch (error) {
             console.error("Failed to create bot:", error);
 
-            // Логируем ошибку для отладки
-            console.log("Error details:", error);
 
             // Проверяем, является ыли ошибка ошибкой 400 (недостаточно средств)
             // @ts-ignore
@@ -227,7 +224,13 @@ const StartBotPage = () => {
             setModalOpen(true); // Открываем модальное окно
         }
     };
-
+    useEffect(() => {
+        if (userStatistics.money) {
+            setAnimateBalance(true);
+            const timer = setTimeout(() => setAnimateBalance(false), 500);
+            return () => clearTimeout(timer);
+        }
+    }, [userStatistics.money]);
     return (
         <div className="start-bot">
             <ProfileHeader />

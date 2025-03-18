@@ -238,7 +238,13 @@ const SimulationPage = () => {
 
         setShowModal(false);
     };
-
+    useEffect(() => {
+        if (userStatistics.money) {
+            setAnimateBalance(true);
+            const timer = setTimeout(() => setAnimateBalance(false), 500);
+            return () => clearTimeout(timer);
+        }
+    }, [userStatistics.money]);
     return (
         <div className="bot-settings">
             <ProfileHeader />

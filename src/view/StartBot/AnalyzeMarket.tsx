@@ -1,11 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { BotsViewModel } from "../../viewmodel/botsViewModel";
+// @ts-ignore
+import arrow_img from "../../img/arrow.svg";
 
 interface MarketAnalysisProps {
     startDate: string;
     endDate: string;
     marketType: string;
     symbol: string;
+}
+
+interface MarketAnalysisResult {
+    max_price: number;
+    min_price: number;
+    trend: string;
+    volatility_persent: number;
+    volatility: number;
 }
 
 const translateMarketType = (type: string): string => {
@@ -35,9 +45,10 @@ const translateTrend = (trend: string): string => {
 };
 
 const MarketAnalysis: React.FC<MarketAnalysisProps> = ({ startDate, endDate, marketType, symbol }) => {
-    const [analysis, setAnalysis] = useState<any>(null);
+    const [analysis, setAnalysis] = useState<MarketAnalysisResult | null>(null);
     const [translatedMarketType, setTranslatedMarketType] = useState<string>(translateMarketType(marketType));
     const [error, setError] = useState<string | null>(null);
+    const [showSettings, setShowSettings] = useState(false);
 
     useEffect(() => {
         const fetchAnalysis = async () => {
@@ -69,9 +80,20 @@ const MarketAnalysis: React.FC<MarketAnalysisProps> = ({ startDate, endDate, mar
 
     return (
         <div className="start-bot-analyze-container">
-            {analysis.trend && (
-                <>
-                    <h2>{translatedMarketType} : {symbol}</h2>
+            <div>
+                <div className="settings-header" onClick={() => setShowSettings(!showSettings)}>
+                    <div className="bot-options-more-button" style={{ cursor: "pointer" }}>
+                        <h2>Анализ {symbol} на период с {startDate} по {endDate}</h2>
+                        <img
+                            src={arrow_img}
+                            width={20}
+                            alt="Toggle Statistics"
+                            className={`arrow-icon ${showSettings ? "rotated" : ""}`}
+                        />
+                    </div>
+                </div>
+
+                <div className={`custom-settings ${showSettings ? "visible" : "hidden"}`}>
                     <div className="bot-option-container">
                         <div>
                             <p>Макс. цена: {analysis.max_price}</p>
@@ -83,8 +105,8 @@ const MarketAnalysis: React.FC<MarketAnalysisProps> = ({ startDate, endDate, mar
                                 ({analysis.volatility.toFixed(2)})</p>
                         </div>
                     </div>
-                </>
-            )}
+                </div>
+            </div>
         </div>
     );
 };

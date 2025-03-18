@@ -107,7 +107,7 @@
     padding: 7px;
     background-color: #101010;
     color:white;
-
+    min-width: 200px;
     border-radius: 6px;
     border:none
 }
@@ -210,8 +210,8 @@
     height: 100%;
     transition: transform 0.3s ease-in-out;
     display: flex;
-    align-self: center;
-    justify-self: center;
+    align-self: end;
+    justify-self: end;
     margin:auto;
 }
 
@@ -236,15 +236,6 @@
     padding: 10px;
     background-color: #ffffff;
     border-radius: 10px;
-}
-
-.arrow-icon {
-    height: 100%;
-    transition: transform 0.3s ease-in-out;
-    display: flex;
-    align-self: center;
-    justify-self: center;
-    margin: auto;
 }
 
 .arrow-icon.rotated {
