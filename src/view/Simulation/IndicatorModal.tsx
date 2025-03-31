@@ -1,8 +1,10 @@
 import React from "react";
 import CommonButton from "../Common/CommonButton";
+import ToolTip from "../Common/Tooltip";
+import {IndicatorDetails} from "../../interfaces/bots_interfaces";
 
 interface IndicatorModalProps {
-    indicators: string[]; // Массив индикаторов
+    indicators: IndicatorDetails[]; // Массив индикаторов
     addIndicator: (indicator: string) => void; // Функция для добавления индикатора
     closeModal: () => void; // Функция для закрытия модала
 }
@@ -23,12 +25,17 @@ const IndicatorModal: React.FC<IndicatorModalProps> = ({ indicators, addIndicato
 
                 <div className="indicators">
                     {indicators.map((indicator) => (
-                        <CommonButton
-                            key={indicator}
-                            color="white"
-                            onClick={() => addIndicator(indicator + "#" + generateUniqueNumber().toString())}
-                            text={indicator}
-                        />
+                        <div className="indicator-container" key={indicator.name}>
+                            <CommonButton
+                                key={indicator.name}
+                                color="white"
+                                onClick={() => addIndicator(indicator.name + "#" + generateUniqueNumber().toString())}
+                                text={indicator.name}
+                            />
+                            <ToolTip text= {indicator.desc}/>
+                        </div>
+
+
                     ))}
                 </div>
 

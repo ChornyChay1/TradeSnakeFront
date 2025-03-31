@@ -96,7 +96,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap:50px;
+    gap:10px;
     padding-right:10px;
     cursor:default;
 }
@@ -109,6 +109,15 @@
 .recharge-button{
     width: auto;
     height: 40px;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-right:5px;
+}
+
+.recharge-button:hover{
+    transform:scale(1.1);
 }
 .name-and-progress{
     width:auto;
@@ -120,9 +129,10 @@
     display: flex;
     flex-direction: row;
     gap:10px;
-    align-items: start;
+    align-items: center;
     img{
-        height: 50px;
+        max-height: 50px;
+        max-width: 40px;
     }
 }
 .main-profile-container-content{
@@ -168,16 +178,13 @@
     width: 100%;
     height: auto;
 }
-.diagramma-column{
-    width:200px;
-}
 .text-statistic-column{
     display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: start;
     padding:10px;
-    width: 45%;
+    width: 42%;
     text-wrap: wrap;
 .statistics-grid {
     display: flex;
@@ -213,13 +220,21 @@
     -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
     box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
     border-radius: 13px;
-    width: 30%;
-    max-height: 800px;
+    width: 100%;
+    height: 760px;
     h2{
         font-size:var(--h2-text);
         font-weight: normal;
         padding-left: 5%;
     }
+}
+.main-profile-content-log{
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+    height: auto;
+    width: 30%;
+
 }
 .profile-footer{
     margin-top:auto;
@@ -275,12 +290,12 @@
 
 .diagramma-center-text {
     position: absolute;
-    top: 28%;
-    left: 31%;
+    top: 30%;
+    margin-left:auto;
     transform: translate(-50%, -100%);
     font-size: 18px;
     text-align: center;
-    width: 200px;
+    width: auto;
     color: black;
     opacity: 0; /* Начальная невидимость */
     animation: fadeIn 1.5s forwards; /* Применяем анимацию */
@@ -340,6 +355,10 @@
 
 .profile-modal {
     position: fixed;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
     top: 0;
     left: 0;
     width: 100%;
@@ -394,6 +413,8 @@
 .profile-exit-modal-button{
     width: auto;
     background-color: white;
+    border:none;
+    font-size: 20px;
     padding:0;
     position: absolute;
     top:30px;
@@ -406,8 +427,7 @@
 /* Форма, которая расположена выше оверлея */
 .profile-modal-content {
     position: relative;
-    top: 30%;
-    left: 40%;
+    margin:auto;
     z-index: 1;
     background: white;
     padding: 40px;
@@ -457,8 +477,317 @@
     color: #fff;
     padding: 5px;
     border-radius: 4px;
-    width:300px;
+    max-width:300px;
     font-size: 14px;
     z-index: 1000;
     pointer-events: none;
+}
+@media (max-width: 1400px) {
+    .statistic-container-profile{
+        flex-direction: column;
+    }
+    .diagramma-center-text {
+        position: absolute;
+        margin-left:auto;
+        top: 33%;
+
+        transform: translate(0, -100%);
+        font-size: 18px;
+        text-align: center;
+        width: auto;
+        color: black;
+        opacity: 0; /* Начальная невидимость */
+        animation: fadeIn 1.5s forwards; /* Применяем анимацию */
+        cursor: default;
+    }
+    .text-statistic-column {
+        width: 100%;
+    }
+    .statistics-grid {
+        display: flex;
+        gap: 5px;
+        justify-content: space-between;
+        padding:10px;
+        font-size: var(--middle-text);
+    }
+
+}
+@media (max-width: 900px) {
+    .main-profile-container-content {
+        flex-direction: column;
+    }
+
+    .main-profile-content-log {
+        width: 100%;
+        max-height: 400px;
+        margin-bottom: 30px;
+    }
+
+    .main-profile-content-statistic-col {
+        width: 100%;
+    }
+
+    .main-profile-container-content {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .chart-container-light {
+        width: 90vw;
+    }
+
+    .statistic-container-profile {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .text-statistic-column {
+        width: 100%;
+    }
+
+    .diagramma-column {
+        position: relative;
+        display: flex;
+        flex-grow: 1;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    .buttons {
+        position: relative;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: -20px;
+    }
+
+    .buttons button {
+        position: relative;
+        width: auto;
+        height: 40px;
+        border: none;
+        border-radius: 20px;
+        background: lightgray;
+        margin: 5px;
+        font-size: 16px;
+        text-wrap: nowrap;
+        cursor: pointer;
+        transition: transform 0.3s ease-in-out, background 0.3s ease-in-out;
+    }
+
+    /* Расположение кнопок в полукруг */
+    .buttons button:nth-child(1) {
+        transform: translateY(0);
+
+    }
+
+    .buttons button:nth-child(2) {
+        transform: translateY(0);
+    }
+
+    .buttons button:nth-child(3) {
+        transform: translateY(0);
+    }
+
+    /* Анимация при смене активной кнопки */
+    .buttons button.selected {
+        background: #171717;
+        color: white;
+        transform: translateY(0) translateX(50px);
+
+    }
+
+    .diagramma-center-text {
+        position: absolute;
+        font-size: 18px;
+        margin-top:auto;
+        text-align: center;
+        width: auto;
+        color: black;
+        opacity: 0; /* Начальная невидимость */
+        animation: fadeIn 1.5s forwards; /* Применяем анимацию */
+        cursor: default;
+    }
+
+    .profile-info-row-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 99.5%;
+        background-color: #1d1d1d;
+        border-radius: 13px;
+        padding: 0.5%;
+        min-height: 50px;
+        color: white;
+
+    }
+
+    .profile-info-name {
+        display: flex;
+        flex-direction: row;
+        padding-left: 10px;
+        gap: 10px;
+        cursor: default;
+        align-items: center;
+
+        .what {
+            text-align: center;
+            padding:3px;
+            background-color: white;
+            border-radius: 5px;
+            color:black;
+            transition: 0.3s;
+        }
+        .what:hover{
+            transform: scale(1.1);
+        }
+
+    }
+
+    .progress-image-container {
+        img{
+            display: none;
+        }
+    }
+
+    .profile-info-balance {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding-right: 5px;
+        cursor: default;
+    }
+
+    .name-and-progress {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+    }
+
+    .recharge-button {
+        width: auto;
+        height: 60px;
+    }
+
+    .name-and-progress {
+        width: auto;
+        height: auto;
+        gap: 20px;
+        align-items: center;
+    }
+
+    .tooltip-profile {
+        max-width: 200px;
+    }
+
+
+    .profile-header{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        height: auto;
+        background-color: #016c3e;
+        width: 100%;
+        font-size: var(--small-text);
+        padding-top:5px;
+        padding-bottom:5px;
+
+    }
+    .profile-header-row{
+        display: flex;
+        flex-direction: row;
+        width: 90%;
+        color:white;
+        align-self: center;
+        justify-content: space-between;
+        a{
+            cursor: pointer;
+            transition: 500ms;
+        }
+        a:hover{
+            color:red;
+        }
+    }
+
+    .navigation-row{
+        display: flex;
+        flex-direction: row;
+        align-self: center;
+        justify-content: start;
+        gap:8px;
+
+        a:hover{
+            text-decoration-line: underline;
+            text-underline-offset: 5px;
+
+        }
+    }
+    .main-profile-content-log-col{
+        height: 300px;
+    }
+    .active-link{
+        text-decoration-line: underline;
+        text-underline-offset: 5px;
+    }
+    .main-profile{
+        width: 100%;
+    }
+    .profile-logo-img{
+        height: 35px;
+    }
+    .exit-button{
+        display: flex;
+        align-self: center;
+    }
+
+    .profile-modal {
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 99;
+    }
+
+    /* Форма, которая расположена выше оверлея */
+    .profile-modal-content {
+        position: relative;
+        margin:auto;
+        z-index: 1;
+        background: white;
+        padding: 40px;
+        border-radius: 10px;
+        text-align: center;
+        width: 200px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        label{
+            color:black;
+        }
+    }
+    @media (max-width: 400px) {
+        .profile-logo-img{
+            height: 25px;
+        }
+    }
 }

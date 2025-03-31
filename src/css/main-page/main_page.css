@@ -3,12 +3,14 @@
     display: flex;
     flex-direction: column;
     justify-content: start;
+    width: 100%;
 }
 .main-header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     width: 90%;
+    margin: auto;
     background-color: white;
     align-items: center;
     padding:10px;

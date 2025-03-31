@@ -155,14 +155,11 @@ export class BotsViewModel {
             if (typeof data.bot_profit.strategy_parameters === 'string') {
                 data.bot_profit.strategy_parameters = JSON.parse(data.bot_profit.strategy_parameters);
             }
-
             // Сохраняем данные о прибыли бота
             this.bot_profit_data = {
                 ...data.bot_profit,
             };
 
-            // Возвращаем данные о прибыли бота
-            console.log(this.bot_profit_data);
 
             return this.bot_profit_data;
         } catch (error) {
@@ -184,6 +181,7 @@ export class BotsViewModel {
     ): Promise<any> {
         const startDateUnix = Math.floor(new Date(start_date).getTime() / 1000).toString();
         const endDateUnix = Math.floor(new Date(end_date).getTime() / 1000).toString();
+
 
         try {
             const url = "http://localhost:8000/utils/analyze";

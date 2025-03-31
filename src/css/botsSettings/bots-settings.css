@@ -322,7 +322,7 @@
     background: white;
     padding: 20px;
     border-radius: 8px;
-    max-width: 500px;
+    max-width: 600px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -333,13 +333,17 @@
 }
 
 .indicators {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    width: 50%;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Две равные колонки */
+    gap: 30px;
+    width: 100%; /* Занимает всю доступную ширину */
+    margin-top: 10px;
 }
+.indicator-container{
+    display: flex;
+    align-items: center;
+}
+
 
 .close-button-modal {
     margin-top: 20px;
@@ -374,10 +378,94 @@
 }
 
 .strategy-message.negative {
-    color: #dc3545; /* Красный цвет */
-    background-color: #f8d7da; /* Светло-красный фон */
+    color: #dc3545;
+    background-color: #f8d7da;
+}
+.strategy-message.neutral {
+    color: #000000;
+    background-color: #d6d6d6;
+}
+.strategy-message::before {
+    content: "* ";
 }
 
-.strategy-message::before {
-    content: "* "; /* Добавляем звёздочку перед текстом */
+@media (max-width: 1200px) {
+    .bot-settings-container-workarea{
+        display: flex;
+        flex-direction: row;
+        gap:10%;
+        width: 100%;
+    }
+    .input-group{
+        display: flex;
+        flex-direction: column;
+    }
+    .input-group input{
+        letter-spacing: 0.1em;
+        padding: 7px;
+        color:black;
+        border-radius: 6px;
+        border:1px solid black;
+        background-color: #ffffff;
+    }
+
+
+}
+@media (max-width: 900px) {
+    .bot-settings-container-workarea{
+        display: flex;
+        flex-direction: column;
+        gap:20px;
+        width: 100%;
+    }
+    .button-bottom-bar{
+        display: flex;
+        align-self: flex-end;
+        margin-right: 0;
+
+        padding:0;
+        height: 40px;
+    }
+    .input-group{
+        display: flex;
+        flex-direction: row;
+    }
+    .options-bar{
+        width: 100%;
+    }
+    .bottom-bar{
+        width: calc(100% - 40px);
+
+    }
+    .visualisation-container {
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: space-between;
+        align-items: start;
+        gap:20px;
+        width: 100%;
+        height: 100%;
+
+    }
+    .visualisation-container-chart{
+        display: flex;
+        flex-direction: column;
+        background: #ffffff;
+        width: calc(100% - 40px);
+        border-radius: 13px;
+        -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+        -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+        box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    }
+    .option{
+        display: flex;
+        padding:15px;
+        width: calc(100% - 30px);
+    }
+}
+@media (max-width: 400px) {
+    .input-group{
+        flex-direction: column;
+
+    }
 }

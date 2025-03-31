@@ -39,10 +39,29 @@ const IndicatorConfig: React.FC<IndicatorConfigProps> = ({
             lineOptions.map((line) => (line.name === lineName ? { ...line, maPeriod: period } : line))
         );
     };
-
+    const setEMAPeriod = (lineName: string, period: number) => {
+        setLineOptions(
+            lineOptions.map((line) => (line.name === lineName ? { ...line, emaPeriod: period } : line))
+        );
+    };
+    const setBollingerPeriod = (lineName: string, period: number) => {
+        setLineOptions(
+            lineOptions.map((line) => (line.name === lineName ? { ...line, bollngerPeriod: period } : line))
+        );
+    };
+    const setBollingerDeviation = (lineName: string, deviation: number) => {
+        setLineOptions(
+            lineOptions.map((line) => (line.name === lineName ? { ...line, bollngerDeviation: deviation } : line))
+        );
+    };
     const setRsiPeriod = (lineName: string, period: number) => {
         setLineOptions(
             lineOptions.map((line) => (line.name === lineName ? { ...line, rsiPeriod: period } : line))
+        );
+    };
+    const setAdxPeriod = (lineName: string, period: number) => {
+        setLineOptions(
+            lineOptions.map((line) => (line.name === lineName ? { ...line, adxPeriod: period } : line))
         );
     };
 
@@ -88,18 +107,58 @@ const IndicatorConfig: React.FC<IndicatorConfigProps> = ({
                                 />
                             </div>
                         )}
-
-                        {line.name.startsWith("RSI") && (
+                        {line.name.startsWith("EMA") && (
                             <div className="settings-row">
-                                <label>Период RSI:</label>
+                                <label>Период EMA:</label>
                                 <input
                                     type="number"
-                                    value={line.rsiPeriod || 14}
-                                    onChange={(e) => setRsiPeriod(line.name, Math.max(Number(e.target.value), 1))}
+                                    value={line.emaPeriod}
+                                    onChange={(e) => setEMAPeriod(line.name, Math.max(Number(e.target.value), 1))}
                                 />
                             </div>
                         )}
+                        {line.name.startsWith("BollingerBands") && (
+                            <>
 
+                            <div className="settings-row">
+                                <label>Период Боллинджера:</label>
+                                <input
+                                    type="number"
+                                    value={line.bollngerPeriod}
+                                    onChange={(e) => setBollingerPeriod(line.name, Math.max(Number(e.target.value), 1))}
+                                />
+                            </div>
+                            <div className="settings-row">
+                            <label>Стандартное Отклонение:</label>
+                            <input
+                            type="number"
+                            value={line.bollngerDeviation}
+                         onChange={(e) => setBollingerDeviation(line.name, Math.max(Number(e.target.value), 1))}
+                    />
+                </div>
+                            </>
+            )}
+            {line.name.startsWith("RSI") && (
+                <div className="settings-row">
+                    <label>Период RSI:</label>
+                    <input
+                        type="number"
+                        value={line.rsiPeriod || 14}
+                        onChange={(e) => setRsiPeriod(line.name, Math.max(Number(e.target.value), 1))}
+                                />
+                            </div>
+                        )}
+                        {line.name.startsWith("ADX") && (
+                            <div className="settings-row">
+                                <label>Период ADX:</label>
+                                <input
+                                    type="number"
+                                    value={line.adxPeriod || 14}
+                                    onChange={(e) => setAdxPeriod(line.name, Math.max(Number(e.target.value), 1))}
+                                />
+                            </div>
+                        )}
+                        {!line.name.startsWith("Volume")&&!line.name.startsWith("SRLevels") && (
                         <div className="settings-row">
                             <label>Цвет линии:</label>
                             <input
@@ -108,6 +167,7 @@ const IndicatorConfig: React.FC<IndicatorConfigProps> = ({
                                 onChange={(e) => setLineColor(line.name, e.target.value)}
                             />
                         </div>
+                        )}
                     </div>
                 </div>
             ))}

@@ -186,15 +186,14 @@ const BotOptionsStart: React.FC<ChartOptionsProps> = ({
                 <div className="input-group">
                     <div className="input-group-addon">
 
-                        <label htmlFor="money">Начальный капитал:</label>
+                        <label htmlFor="money">Капитал:</label>
                         <input id="money" type="number" value={money}
                                onChange={(e) => setMoney(Number(e.target.value))}/>
                     </div>
-                    <ToolTip text="Укажите начальный капитал для торговли"/>
+                    <ToolTip text="Укажите капитал для торговли"/>
 
                 </div>
             </div>
-
                 <div className="option-start-bot">
                     <div className="settings-header" onClick={() => setShowSettings(!showSettings)}>
                     <div className="bot-options-more-button" onClick={() => {

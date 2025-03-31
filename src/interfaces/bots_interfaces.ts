@@ -8,6 +8,10 @@ export interface BotProfitResponse {
         create_time: string;
         profit: number;
 }
+export interface IndicatorDetails{
+        name: string;
+        desc: string;
+}
 export interface BotCreateRequest {
         name: string;
         symbol: string;

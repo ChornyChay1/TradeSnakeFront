@@ -31,6 +31,8 @@ export interface ChartData {
     close: number;
     low: number;
     high: number;
+    volume?: number;
+    turnover?: number;
 
 }
 // Определяем интерфейс для каждой стратегии
@@ -55,13 +57,18 @@ export interface DoubleMovingAverageStrategy extends StrategyOptions {
 export interface LineProps {
     type: 'line' | 'area'; // Тип линии
     color: string;        // Цвет линии
-    data: any[];     // Данные для линии
+    data: any;     // Данные для линии
     name: string;         // Имя линии
 }
 export interface LineOptions {
     name:string;
     maPeriod?:number;
     rsiPeriod?: number;
+    emaPeriod?: number;
+    bollngerPeriod?: number;
+    bollngerDeviation?: number;
+
+    adxPeriod?: number;
     color?: string;        // Цвет линии
 
 }

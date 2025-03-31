@@ -102,6 +102,7 @@ const UpdateBotPage = () => {
         trade_count: 0,
         sell_count: 0,
         buy_count: 0,
+        procent:0,
         total_profit: 0,
         crypto_profit: 0,
         forex_profit: 0,
@@ -132,20 +133,24 @@ const UpdateBotPage = () => {
     const fetchDataSimulation = async () => {
         setIsLoading(true);
         try {
-
+            console.log("сейчас откровенно симуляция")
             const startDateUnix = Math.floor(new Date(startDate).getTime() / 1000);
             const endDateUnix = Math.floor(new Date(endDate).getTime() / 1000);
 
-            let strategyParams = {};
 
-            if (strategy.id === "1") {
-                strategyParams = {
-                    ma_length: strategy.settings.ma_length.toString(),
-                    start_date: startDateUnix.toString(),
-                    end_date: endDateUnix.toString(),
-                    money: money.toString(),
-                };
+            const stringSettings = {};
+            for (const [key, value] of Object.entries(strategy.settings)) {
+                // @ts-ignore
+                stringSettings[key] = value.toString();
             }
+
+            // Создаем параметры стратегии
+            let strategyParams = {
+                ...stringSettings, // Используем преобразованные в строки настройки
+                start_date: startDateUnix.toString(),
+                end_date: endDateUnix.toString(),
+                money: money ? money.toString() : "0"
+            };
 
             await chartViewModel.fetchStrategyResult(Number(strategy.id), brokerId, intervalStrategy, money, symbol, strategyParams);
             setChartData(chartViewModel.data);
@@ -157,9 +162,10 @@ const UpdateBotPage = () => {
     };
 
     useEffect(() => {
+        console.log("мы тут дата не загрузилась")
 
         if (isBotDataLoaded && isBrokerDataLoaded) {
-
+            console.log("мы тут дата загрузилась")
             setIsSimulation(true);
             fetchDataSimulation()
         }
@@ -209,7 +215,16 @@ const UpdateBotPage = () => {
                 const strategyParameters = typeof botData.strategy_parameters === 'string'
                     ? JSON.parse(botData.strategy_parameters)
                     : botData.strategy_parameters;
-
+                setStrategy({
+                    id: botData.strategy_id.toString(),
+                    name: "strategy",
+                    settings: Object.keys(botData.strategy_parameters)
+                        .filter(key => key !== 'interval')  // Исключаем interval
+                        .reduce((acc, key) => {
+                            acc[key] = botData.strategy_parameters[key];
+                            return acc;
+                        }, {} as Record<string, any>),
+                });
                 setIntervalStrategy(strategyParameters.interval || "60");
                 setIsLoading(false);
                 setIsBotDataLoaded(true)
@@ -254,7 +269,6 @@ const UpdateBotPage = () => {
             for (const [key, value] of Object.entries(strategy.settings)) {
                 strategyParameters[key] = value.toString();
             }
-
             await botsViewModel.updateBot(
                 parseInt(bot_id!),
                 fullBotData.bot_name,
@@ -326,7 +340,7 @@ const UpdateBotPage = () => {
             <div className="start-bot-container">
                 <UserProfileInfo
                     userStatistics={userStatistics}
-                    percentage={percentage}
+                    percentage={userStatistics.procent}
                     animateName={animateName}
                     animateBalance={animateBalance}
                     handleRecharge={handleRecharge}
@@ -376,6 +390,7 @@ const UpdateBotPage = () => {
                         <div className="bot-option-start-container">
                             <BotOptionsUpdate
                                 interval={intervalStrategy}
+                                setBrokerDataLoaded={setIsBrokerDataLoaded}
                                 setInterval={setIntervalStrategy}
                                 money={money}
                                 setMoney={setMoney}
@@ -389,7 +404,7 @@ const UpdateBotPage = () => {
                                 setStrategy={setStrategy}
                                 brokerId={brokerId}
                                 setBrokerId={setBrokerId}
-                                setIsBrokerDataLoaded={setIsBrokerDataLoaded}
+                                isBrokerDataLoaded={isBrokerDataLoaded}
                             />
                             <div className="bot-option-end-bot-row">
                                 <Statistics

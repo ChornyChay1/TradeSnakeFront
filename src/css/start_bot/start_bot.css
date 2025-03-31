@@ -82,6 +82,9 @@
     transition: opacity 0.3s ease, transform 0.3s ease, max-height 0.4s ease;
 }
 .custom-settings.visible {
+    display: flex;
+    flex-direction: column;
+    gap:10px;
     max-height:2000px;
     opacity: 1;
     transform: translateY(0);
@@ -250,3 +253,50 @@ h2 {
 .animated-text.delay-3 { animation-delay: 0.3s; }
 .animated-text.delay-4 { animation-delay: 0.4s; }
 .animated-text.delay-5 { animation-delay: 0.5s; }
+
+@media (max-width: 1000px) {
+    .start-bot-content-container{
+        flex-direction: column;
+        justify-content: center;
+        gap:20px;
+
+        .input-group{
+            flex-direction: row-reverse;
+        }
+        .input-group-addon{
+            flex-direction: column;
+        }
+    }
+    .custom-settings{
+        .input-group{
+            flex-direction: column;
+        }
+    }
+    .update-bot-first-row{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+
+        h1{
+            font-weight: normal;
+            font-size: var(--h2-text);
+        }
+    }
+    .bot-option-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+        margin-top: 10px;
+
+        h2{
+            margin-top:15px;
+            margin-bottom:15px;
+        }
+    }
+    .start-bot-chart-container{
+        flex-direction: column-reverse;
+    }
+}

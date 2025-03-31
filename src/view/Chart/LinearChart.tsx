@@ -44,7 +44,7 @@ const LineChart: React.FC<LineChartProps> = ({ data, lines = [], symbolName }) =
         });
         const areaSeries = chart.addAreaSeries( { lineColor: '#00CA73', topColor: '#0b980d', bottomColor: 'rgba(0,225,105,0.28)' });
         // @ts-ignore
-        areaSeries.setData(data.map(({ timestamp, money }) => ({ time: timestamp, value: money })));
+        areaSeries.setData(data.map(({ timestamp, money }) => ({ time: timestamp/1000, value: money })));
 
 
 

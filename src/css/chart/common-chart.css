@@ -14,3 +14,9 @@
   height: 150px;
   margin-right: 0;
 }
+@media (max-width: 900px) {
+
+  .chart-container-light{
+    width: 85vw;
+  }
+}

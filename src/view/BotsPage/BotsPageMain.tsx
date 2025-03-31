@@ -31,7 +31,7 @@ const BotsPageMain = () => {
         trade_count: 0,
         sell_count: 0,
         buy_count: 0,
-
+        procent:0,
         total_profit: 0,
         crypto_profit: 0,
         forex_profit: 0,
@@ -107,7 +107,7 @@ const BotsPageMain = () => {
             <div className="main-bots-container">
                 <UserProfileInfo
                     userStatistics={userStatistics}
-                    percentage={percentage}
+                    percentage={userStatistics.procent}
                     animateName={animateName}
                     animateBalance={animateBalance}
                     handleRecharge={handleRecharge}

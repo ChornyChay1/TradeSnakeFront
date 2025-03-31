@@ -1,6 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ProgressImage from "../ProgressImage";
 import CommonButton from "../../Common/CommonButton";
+// @ts-ignore
+import { FaPlusCircle } from "react-icons/fa";
+// @ts-ignore
+import rechargeIcon from "../../../img/wallet.png";
 
 interface UserProfileInfoProps {
     userStatistics: {
@@ -12,7 +16,7 @@ interface UserProfileInfoProps {
     animateName: boolean;
     animateBalance: boolean;
     handleRecharge: (amount: number) => Promise<void>;
-    text:string;
+    text: string;
 }
 
 const UserProfileInfo: React.FC<UserProfileInfoProps> = ({
@@ -21,23 +25,32 @@ const UserProfileInfo: React.FC<UserProfileInfoProps> = ({
                                                              animateName,
                                                              animateBalance,
                                                              handleRecharge,
-    text
+                                                             text
                                                          }) => {
     const [isModalOpen, setModalOpen] = useState(false);
     const [rechargeAmount, setRechargeAmount] = useState(10);
-    const [isVisible, setIsVisible] = useState(false); // Состояние видимости подсказки
-    const [position, setPosition] = useState({ x: 0, y: 0 }); // Позиция подсказки
+    const [isVisible, setIsVisible] = useState(false);
+    const [position, setPosition] = useState({ x: 0, y: 0 });
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 900);
 
-// Обработчик наведения
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 900);
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
     const handleMouseMove = (e: React.MouseEvent) => {
-        setPosition({ x: e.clientX + 10, y: e.clientY + 10 }); // Позиция рядом с курсором
+        setPosition({ x: e.clientX + 10, y: e.clientY + 10 });
         setIsVisible(true);
     };
 
-    // Обработчик ухода курсора
     const handleMouseLeave = () => {
         setIsVisible(false);
     };
+
     return (
         <div className="profile-info-row-container">
             {userStatistics.id !== 0 ? (
@@ -49,17 +62,18 @@ const UserProfileInfo: React.FC<UserProfileInfoProps> = ({
                             </p>
                             <ProgressImage percentage={percentage} />
                         </div>
-                        <p
+                        <p className="what"
                             onMouseMove={handleMouseMove}
                             onMouseLeave={handleMouseLeave}
-                            style={{  cursor: "pointer" }}
-                        >Что делать?</p>
+                            style={{ cursor: "pointer" }}
+                        >
+                            {isMobile ? " ? " : "Что делать?"}
+                        </p>
                         {isVisible && (
                             <div
                                 style={{
                                     left: position.x,
                                     top: position.y,
-
                                 }}
                                 className="tooltip-profile"
                             >
@@ -69,10 +83,19 @@ const UserProfileInfo: React.FC<UserProfileInfoProps> = ({
                     </div>
                     <div className="profile-info-balance">
                         <p className={`balance ${animateBalance ? 'balance-animation' : ''}`}>
-                            Баланс: {userStatistics.money.toFixed(2)} USD
+                            {userStatistics.money.toFixed(2)} USD
                         </p>
                         <div className="recharge-button">
-                            <CommonButton text="Пополнить" color="white" onClick={() => setModalOpen(true)} />
+                            <img
+                                src={rechargeIcon}
+                                alt="Пополнить"
+                                onClick={() => setModalOpen(true)}
+                                style={{
+                                    width: "27px",
+                                    height: "27px",
+                                    cursor: "pointer"
+                                }}
+                            />
                         </div>
                     </div>
                     {isModalOpen && (

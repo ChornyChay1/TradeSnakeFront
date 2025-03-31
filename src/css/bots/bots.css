@@ -90,6 +90,7 @@ tr:nth-child(odd) {
 
 .profit-col-tr{
     border-top:2px solid black;
+
 }
 
 .font-semibold {
@@ -125,4 +126,47 @@ tr:nth-child(odd) {
 .cursor-pointer:hover{
     rotate: -180deg;
     transform:scale(1.2);
+}
+
+
+@media (max-width: 900px) {
+    .bot-profit-table {
+        padding: 4px;
+    }
+    .main-bots-container {
+
+        th, td {
+            padding: 4px;
+            font-size: 0.8rem;
+            max-width: 100px;
+        }
+    }
+    .header {
+        padding: 8px 8px 12px;
+    }
+
+    .cursor-pointer {
+        width: 20px;
+        height: 20px;
+    }
+
+    .footer {
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+
+    .empty-message {
+        padding: 12px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 500px) {
+    .main-bots-container{
+
+        th, td {
+            padding: 4px;
+            font-size: 0.6rem;
+        }
+    }
 }

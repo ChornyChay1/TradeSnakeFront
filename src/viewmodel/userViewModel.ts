@@ -13,6 +13,7 @@ export class UserViewModel {
         market_count: 0,
         broker_count: 0,
         buy_count: 0,
+        procent:0,
         sell_count: 0,
         trade_count: 0,
         total_profit: 0,
@@ -35,6 +36,38 @@ export class UserViewModel {
         return UserViewModel.instance;
     }
 
+    public async downloadMoneyHistoryReport(): Promise<void> {
+        try {
+            const response = await fetch('http://localhost:8000/users/money_history/export', {
+                method: 'GET',
+                credentials: 'include',
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to download money history report');
+            }
+
+            // Получаем blob с файлом
+            const blob = await response.blob();
+
+            // Создаем ссылку для скачивания
+            const downloadUrl = window.URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = downloadUrl;
+            link.setAttribute('download', 'money_history.xlsx');
+
+            // Добавляем ссылку в DOM и эмулируем клик
+            document.body.appendChild(link);
+            link.click();
+
+            // Удаляем ссылку после скачивания
+            document.body.removeChild(link);
+            window.URL.revokeObjectURL(downloadUrl);
+        } catch (error) {
+            console.error("Failed to download money history report", error);
+            throw error; // Пробрасываем ошибку для обработки в UI
+        }
+    }
     // Метод для пополнения денег пользователя
     public async addUserMoney(amount: number): Promise<void> {
         try {
@@ -57,28 +90,11 @@ export class UserViewModel {
             console.error("Failed to add user money", error);
         }
     }
-    // Метод для обновления данных о деньгах пользователя
-    public async updateUserMoney(): Promise<void> {
-        try {
-            const response = await fetch('http://localhost:8000/users/update_money', {
-                method: 'PUT',
-                credentials: 'include',  // Сессия пользователя
-            });
 
-            if (!response.ok) {
-                throw new Error('Failed to update user money');
-            }
-
-        } catch (error) {
-            console.error("Failed to update user money", error);
-        }
-    }
 
     // Метод для получения статистики пользователя
     public async fetchUserStatistics(): Promise<void> {
         try {
-            // Сначала обновляем деньги пользователя
-            await this.updateUserMoney();
 
             const response = await fetch('http://localhost:8000/users/statistics', {
                 method: 'GET',

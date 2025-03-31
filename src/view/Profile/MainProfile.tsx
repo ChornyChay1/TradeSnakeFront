@@ -23,6 +23,7 @@ const MainProfile = () => {
     const [rechargeAmount, setRechargeAmount] = useState(10);
     const [animateBalance, setAnimateBalance] = useState(false);
     const [animateName, setAnimateName] = useState(false);
+    const [isDownloading, setIsDownloading] = useState(false);
 
     const [userStatistics, setUserStatistics] = useState({
         id: 0,
@@ -36,7 +37,7 @@ const MainProfile = () => {
         trade_count: 0,
         sell_count: 0,
         buy_count: 0,
-
+        procent: 0,
         total_profit: 0,
         crypto_profit: 0,
         forex_profit: 0,
@@ -67,16 +68,16 @@ const MainProfile = () => {
                 timestamp: Date.parse(entry.timestamp),
                 money: entry.money,
             }));
+
             setMoneyHistory(chartData);
         };
 
-        fetchData(); // Первоначальная загрузка
-
+        fetchData();
         const interval = setInterval(fetchData, 100000);
 
-        return () => clearInterval(interval); // Очистка интервала при размонтировании
+        return () => clearInterval(interval);
     }, []);
-    // Анимация для баланса
+
     useEffect(() => {
         if (userStatistics.money) {
             setAnimateBalance(true);
@@ -85,7 +86,6 @@ const MainProfile = () => {
         }
     }, [userStatistics.money]);
 
-    // Анимация для имени
     useEffect(() => {
         if (userStatistics.username) {
             setAnimateName(true);
@@ -102,10 +102,31 @@ const MainProfile = () => {
             const updatedStats = userViewModel.getUserStatistics();
             setUserStatistics(updatedStats);
 
-            await userViewModel.fetchMoneyHistory();
+            await userViewModel.fetchMoneyHistory().then(() => {
+                const moneyHistoryData = userViewModel.getMoneyHistory();
+                const chartData = moneyHistoryData.map(entry => ({
+                    timestamp: Date.parse(entry.timestamp),
+                    money: entry.money,
+                }));
+                setMoneyHistory(chartData);
+            });
+
             setAnimateBalance(true);
         } catch (error) {
             console.error("Error updating balance:", error);
+        }
+    };
+
+    const handleDownloadReport = async () => {
+        const userViewModel = UserViewModel.getInstance();
+        setIsDownloading(true);
+        try {
+            await userViewModel.downloadMoneyHistoryReport();
+        } catch (error) {
+            console.error("Failed to download report:", error);
+            // Можно добавить уведомление об ошибке
+        } finally {
+            setIsDownloading(false);
         }
     };
 
@@ -116,14 +137,12 @@ const MainProfile = () => {
             <div className="main-profile-container">
                 <UserProfileInfo
                     userStatistics={userStatistics}
-                    percentage={percentage}
+                    percentage={userStatistics.procent}
                     animateName={animateName}
                     animateBalance={animateBalance}
                     handleRecharge={handleRecharge}
                     text={"Здесь показываются основные ваши достижения а также логи работы Ваших ботов. Данные обновляются в реальном времени"}
-
                 />
-
 
                 <div className="main-profile-container-content">
                     <div className="main-profile-content-statistic-col">
@@ -138,14 +157,30 @@ const MainProfile = () => {
                             <StatisticBlock statistics={userStatistics}/>
                         </div>
                     </div>
-                    <div className="main-profile-content-log-col">
-                        <h2>Активность ботов</h2>
-                        <Logs/>
+                    <div>
+
+                    </div>
+                    <div className="main-profile-content-log">
+                        <div className="main-profile-content-log-col">
+                            <h2>Активность ботов</h2>
+                            <Logs/>
+                        </div>
+
+                        {!isDownloading ? (
+
+                            <CommonButton
+                            text={ "Скачать выгрузку операций"}
+                            onClick={handleDownloadReport}
+                            color={"green"}
+                        />
+                        ) : (
+                            <CommonButton text="Скачивание ..." color={"white"}/>
+                        )}
+
                     </div>
                 </div>
             </div>
             <ProfileFooter/>
-
         </div>
     );
 };

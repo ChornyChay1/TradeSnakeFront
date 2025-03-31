@@ -10,6 +10,7 @@ export interface UserStatisticsResponse {
     trade_count: number;
     buy_count: number;
     sell_count: number;
+    procent:number;
     total_profit: number;
     crypto_profit: number;
     forex_profit: number;

@@ -43,69 +43,8 @@ export class ChartViewModel {
         }
     }
 
-    // Общий метод для форматирования данных
-    private formatChartData(data: any[]): any[] {
-        return data.map((item) => ({
-            time: item.timestamp,
-            open: item.open,
-            high: item.high,
-            low: item.low,
-            close: item.close,
-            sell: !!item.sell?.price,
-            buy: !!item.buy?.price
-        }));
-    }
 
-    // Метод для получения исторических данных бота
-    public async fetchBotHistorical(bot_id: number): Promise<void> {
-        try {
-            const url = "http://localhost:8000/utils/bot_historical";
 
-            const response = await fetch(url, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                credentials: "include", // Для передачи куки (сессии пользователя)
-                body: JSON.stringify({ bot_id }),
-            });
-
-            if (!response.ok) {
-                throw new Error(`Failed to fetch bot historical data: ${response.statusText}`);
-            }
-
-            const result = await response.json();
-
-            if (!Array.isArray(result.historical_results)) {
-                throw new Error("Invalid response format: 'historical_results' should be an array.");
-            }
-
-            // Форматируем данные для графика
-            this.chartData = result.historical_results.map((item: any) => ({
-                time: Number(item.timestamp) / 1000, // Преобразуем в число
-                open: item.open,
-                high: item.high,
-                low: item.low,
-                close: item.close,
-                sell: item.sell && Object.keys(item.sell).length > 0 ? {
-                    broker_price: item.sell.broker_price,
-                    price: item.sell.price,
-                    quantity: item.sell.quantity
-                } : null,
-                buy: item.buy && Object.keys(item.buy).length > 0 ? {
-                    broker_price: item.buy.broker_price,
-                    price: item.buy.price,
-                    quantity: item.buy.quantity
-                } : null
-            }));
-
-            // Сохраняем данные о прибыли
-            this.profitData = result.bot_summary;
-        } catch (error) {
-            console.error("Failed to fetch bot historical data", error);
-            throw error;
-        }
-    }
 
     // Метод для получения данных графика
     public get data(): any[] {
@@ -152,6 +91,9 @@ export class ChartViewModel {
                 high: item.high,
                 low: item.low,
                 close: item.close,
+                volume:item.volume,
+                turnover:item.turnover,
+
                 sell: item.sell && Object.keys(item.sell).length > 0 ? {
                     broker_price: item.sell.broker_price,
                     price: item.sell.price,
@@ -198,6 +140,8 @@ export class ChartViewModel {
                 high: item.high,
                 low: item.low,
                 close: item.close,
+                volume:item.volume,
+                turnover:item.turnover,
                 sell: item.sell && Object.keys(item.sell).length > 0 ? {
                     broker_price: item.sell.broker_price,
                     price: item.sell.price,
@@ -208,9 +152,9 @@ export class ChartViewModel {
                     price: item.buy.price,
                     quantity: item.buy.quantity
                 } : null
+
             }));
             this.profitData = result.bot_summary;
-
 
         } catch (error) {
             console.error("Failed to fetch strategy results:", error);

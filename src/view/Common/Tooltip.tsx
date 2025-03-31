@@ -52,6 +52,7 @@ const Tooltip: React.FC<TooltipProps> = ({ text }) => {
                         padding: "5px",
                         borderRadius: "4px",
                         fontSize: "14px",
+                        maxWidth:"300px",
                         zIndex: 1000,
                         pointerEvents: "none", // Чтобы подсказка не мешала взаимодействию
                     }}

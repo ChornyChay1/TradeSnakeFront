@@ -5,6 +5,7 @@ import edit_button from "../../img/edit_button.svg";
 import power_button from "../../img/power-button.svg";
 //@ts-ignore
 import ok_button from "../../img/ok_button.svg";
+import CommonButton from "../Common/CommonButton";
 interface UpdateBotFirstRowProps {
     botName: string;
     botMode: boolean;
@@ -114,11 +115,14 @@ const UpdateBotFirstRow: React.FC<UpdateBotFirstRowProps> = ({
 
             {/* Модальное окно для подтверждения удаления */}
             {isModalOpen && (
-                <div className="modal">
-                    <div className="modal-content">
+                <div className="profile-modal">
+                    <div className="profile-modal-overlay" onClick={() => setModalOpen(false)}></div>
+
+                    <div className="profile-modal-content">
                         <p>Вы уверены, что хотите удалить бота?</p>
-                        <button onClick={handleDeleteBot}>Да</button>
-                        <button onClick={() => setModalOpen(false)}>Отмена</button>
+                        <CommonButton onClick={handleDeleteBot} text={"Да"}/>
+                        <CommonButton onClick={() => setModalOpen(false)} text={"Отмена"}/>
+
                     </div>
                 </div>
             )}

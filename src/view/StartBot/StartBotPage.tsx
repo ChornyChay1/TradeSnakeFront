@@ -19,7 +19,8 @@ import BotOptionsStart from "./BotOptionsStart";
 import CommonFooter from "../Profile/Common/ProfileFooter";
 import Statistics from "../Simulation/Statistics";
 import AnalyzeMarket from "./AnalyzeMarket";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
+
 
 const defaultProfit: StrategyResult = {
     sell_sum: 0,
@@ -77,6 +78,8 @@ const StartBotPage = () => {
         market_count: 0,
         broker_count: 0,
         trade_count: 0,
+        procent:0,
+
         sell_count: 0,
         buy_count: 0,
         total_profit: 0,
@@ -138,16 +141,19 @@ const StartBotPage = () => {
             const startDateUnix = Math.floor(new Date(startDate).getTime() / 1000);
             const endDateUnix = Math.floor(new Date(endDate).getTime() / 1000);
 
-            let strategyParams = {};
-
-            if (strategy.id === "1") {
-                strategyParams = {
-                    ma_length: strategy.settings.ma_length.toString(),
-                    start_date: startDateUnix.toString(),
-                    end_date: endDateUnix.toString(),
-                    money: money.toString(),
-                };
+            const stringSettings = {};
+            for (const [key, value] of Object.entries(strategy.settings)) {
+                // @ts-ignore
+                stringSettings[key] = value.toString();
             }
+
+            // Создаем параметры стратегии
+            let strategyParams = {
+                ...stringSettings, // Используем преобразованные в строки настройки
+                start_date: startDateUnix.toString(),
+                end_date: endDateUnix.toString(),
+                money: money ? money.toString() : "0"
+            };
 
             await chartViewModel.fetchStrategyResult(Number(strategy.id), brokerId, intervalStrategy, money, symbol, strategyParams);
 
@@ -238,7 +244,7 @@ const StartBotPage = () => {
             <div className="start-bot-container">
                 <UserProfileInfo
                     userStatistics={userStatistics}
-                    percentage={percentage}
+                    percentage={userStatistics.procent}
                     animateName={animateName}
                     animateBalance={animateBalance}
                     handleRecharge={handleRecharge}

@@ -45,6 +45,11 @@ input{
     --border-button: 40px;
     --large-text: 2em;
     --middle-text: 1em;
-    --small-text: 0.5em;
+    --small-text: 0.7em;
+  }
+}
+@media (max-width: 500px) {
+  :root {
+    --small-text: 0.6em;
   }
 }

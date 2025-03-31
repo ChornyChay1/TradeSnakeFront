@@ -47,18 +47,19 @@ const StatisticsFullBot: React.FC<StatisticsFullBotProps> = ({ botData }) => {
                             <p>Имя бота: {botData.bot_name}</p>
                             <p>Символ: {botData.symbol}</p>
                             <p>Капитал: {botData.money}</p>
+                            <p>Валюты сейчас: {botData.symbol_count.toFixed(4)}</p>
                             <p>Тип рынка: {translatedMarketType}</p>
                             <p>Брокер: {botData.broker_name}</p>
                             <p>Дата создания: {botData.create_time}</p>
                         </div>
 
                         <div>
-                            <h2>Статистика торгов</h2>
+                        <h2>Статистика торгов</h2>
                             <p>Прибыль: {botData.profit}</p>
                             <p>Количество покупок: {botData.buy_count}</p>
                             <p>Количество продаж: {botData.sell_count}</p>
-                            <p>Средняя цена покупки: {botData.buy_avg}</p>
-                            <p>Средняя цена продажи: {botData.sell_avg}</p>
+                            <p>Средняя цена покупки: {botData.buy_avg.toFixed(2)}</p>
+                            <p>Средняя цена продажи: {botData.sell_avg.toFixed(2)}</p>
                         </div>
                         <div>
                             <h2>Параметры стратегии</h2>

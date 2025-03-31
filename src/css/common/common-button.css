@@ -17,3 +17,17 @@ button:hover{
     color:white;
     background-color: black;
 }
+.button-white{
+    color: #000000;
+    background-color: #ffffff;
+}
+.button-white:hover{
+    color: #ffffff;
+    background-color: #000000;
+    transform:scale(1.05);
+}
+.button-green{
+    color:white;
+    background-color: #28a745;
+    border:none;
+}

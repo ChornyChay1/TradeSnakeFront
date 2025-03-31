@@ -9,7 +9,6 @@ import arrow_img from "../../img/arrow.svg";
 interface ChartOptionsProps {
     interval: string;
     setInterval: (value: string) => void;
-    setIsBrokerDataLoaded: (value: boolean) => void;
     money: number;
     setMoney: (value: number) => void;
     symbol: string;
@@ -22,22 +21,21 @@ interface ChartOptionsProps {
     setStrategy: (value: StrategyOptions) => void;
     brokerId: number;
     setBrokerId: (value: number) => void;
+    setBrokerDataLoaded: (value: boolean) => void;
+    isBrokerDataLoaded: boolean;
 }
 
 const BotOptionsStart: React.FC<ChartOptionsProps> = ({
                                                           interval, setInterval, money, setMoney, symbol, setSymbol,
                                                           startDate, setStartDate, endDate, setEndDate,
-                                                          strategy, setStrategy, brokerId, setBrokerId, setIsBrokerDataLoaded
+                                                          strategy, setStrategy, brokerId, setBrokerId,setBrokerDataLoaded,isBrokerDataLoaded
                                                       }) => {
     const [availableStrategies, setAvailableStrategies] = useState<any[]>([]);
-    const [availableSymbols, setAvailableSymbols] = useState<string[]>([]);
     const [showSettings, setShowSettings] = useState(false);
-    const [brokers, setBrokers] = useState<any[]>([]);
 
     // Временные состояния для полей ввода
     const [tempMoney, setTempMoney] = useState(money);
     const [tempInterval, setTempInterval] = useState(interval);
-    const [tempSymbol, setTempSymbol] = useState(symbol);
 
     useEffect(() => {
         const today = new Date();
@@ -57,7 +55,7 @@ const BotOptionsStart: React.FC<ChartOptionsProps> = ({
             const strategies = await chartViewModel.fetchAllStrategies();
             setAvailableStrategies(strategies);
 
-            if (strategies.length > 0) {
+            if (strategies.length > 0 && isBrokerDataLoaded) {
                 const firstStrategy = strategies[0];
                 setStrategy({
                     id: firstStrategy.id.toString(),
@@ -67,48 +65,26 @@ const BotOptionsStart: React.FC<ChartOptionsProps> = ({
                         return acc;
                     }, {} as Record<string, any>),
                 });
+
             }
 
-            // Загружаем брокеров
-            await botsViewModel.fetchBrokers();
-            const brokersData = botsViewModel.getBrokers();
-            setBrokers(brokersData);
 
-            // Устанавливаем начального брокера, если он передан
-            if (brokerId && brokersData.length > 0) {
-                const selectedBroker = brokersData.find(b => b.id === brokerId);
-                if (selectedBroker) {
-                    // @ts-ignore
-                    setAvailableSymbols(selectedBroker.symbols || []);
-                    setIsBrokerDataLoaded(true);
-                    // Если symbol не был передан извне, устанавливаем первый символ из списка
-                    if (!symbol && selectedBroker.symbols && selectedBroker.symbols.length > 0) {
-                        setSymbol(selectedBroker.symbols[0]);
-                    }
-                }
-            }
+
+            setTempMoney(money);
+            setTempInterval(interval);
+
+
         };
 
         fetchData();
     }, [setStrategy, brokerId]);
 
-    useEffect(() => {
-        if (brokerId && brokers.length > 0) {
-            const selectedBroker = brokers.find(b => b.id === brokerId);
-            if (selectedBroker) {
-                setAvailableSymbols(selectedBroker.symbols || []);
-
-                // Если symbol не был передан извне, устанавливаем первый символ из списка
-                if (!symbol && selectedBroker.symbols && selectedBroker.symbols.length > 0) {
-                    setSymbol(selectedBroker.symbols[0]);
-                }
-            }
-        }
-    }, [brokerId, brokers]);
 
     // Обработчик для поля "Начальный капитал"
     const handleMoneyChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setTempMoney(Number(e.target.value)); // Обновляем временное состояние
+        setBrokerDataLoaded(true);
+
     };
 
     const handleMoneyBlur = () => {
@@ -124,20 +100,15 @@ const BotOptionsStart: React.FC<ChartOptionsProps> = ({
     // Обработчик для поля "Таймфрейм"
     const handleIntervalChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setTempInterval(e.target.value); // Обновляем временное состояние
+        setBrokerDataLoaded(true);
+
     };
 
     const handleIntervalBlur = () => {
         setInterval(tempInterval); // Сохраняем значение после потери фокуса
     };
 
-    // Обработчик для поля "Валютная пара"
-    const handleSymbolChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        setTempSymbol(e.target.value); // Обновляем временное состояние
-    };
 
-    const handleSymbolBlur = () => {
-        setSymbol(tempSymbol); // Сохраняем значение после потери фокуса
-    };
 
     const handleStrategyChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const selectedStrategyId = parseInt(e.target.value);
@@ -152,17 +123,17 @@ const BotOptionsStart: React.FC<ChartOptionsProps> = ({
                 }, {} as Record<string, any>),
             });
         }
+        setBrokerDataLoaded(true);
+
     };
 
     const handleSettingChange = (setting: string, value: string | number) => {
         const updatedSettings = { ...strategy.settings, [setting]: value };
+        setBrokerDataLoaded(true);
+
         setStrategy({ ...strategy, settings: updatedSettings });
     };
 
-    const handleBrokerChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        const newBrokerId = parseInt(e.target.value);
-        setBrokerId(newBrokerId);
-    };
 
     return (
         <>
@@ -181,43 +152,8 @@ const BotOptionsStart: React.FC<ChartOptionsProps> = ({
                     <ToolTip text="Выберите стратегию для торговли" />
                 </div>
 
-                <div className="input-group">
-                    <div className="input-group-addon">
-                        <label htmlFor="broker">Брокер:</label>
-                        <select id="broker" value={brokerId} onChange={handleBrokerChange}>
-                            {brokers.map((broker) => (
-                                <option key={broker.id} value={broker.id}>
-                                    {broker.broker_name} ({broker.market_type_name})
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-                    <ToolTip text={`Выберите брокера для торговли. Текущий брокер имеет параметры:
-                     Спред: ${brokers.find(b => b.id === brokerId)?.spred || "неизвестно"}
-                    , Комиссия: ${brokers.find(b => b.id === brokerId)?.procent_comission || "неизвестно"}
-                     %`} />
-                </div>
 
-                {brokers && (
-                    <div className="input-group">
-                        <div className="input-group-addon">
-                            <label htmlFor="symbol">Валютная пара:</label>
-                            <select
-                                id="symbol"
-                                value={tempSymbol}
-                                onChange={handleSymbolChange}
-                                onBlur={handleSymbolBlur}
-                            >
-                                {availableSymbols.map((sym) => (
-                                    <option key={sym} value={sym}>
-                                        {sym}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-                        <ToolTip text="Выберите валютную пару для торговли" />
-                    </div>
-                )}
+
 
                 <div className="input-group">
                     <div className="input-group-addon">
@@ -239,7 +175,7 @@ const BotOptionsStart: React.FC<ChartOptionsProps> = ({
 
                 <div className="input-group">
                     <div className="input-group-addon">
-                        <label htmlFor="money">Начальный капитал:</label>
+                        <label htmlFor="money">Капитал:</label>
                         <input
                             id="money"
                             type="number"
@@ -249,7 +185,7 @@ const BotOptionsStart: React.FC<ChartOptionsProps> = ({
                             onKeyPress={handleMoneyKeyPress}
                         />
                     </div>
-                    <ToolTip text="Укажите начальный капитал для торговли" />
+                    <ToolTip text="Укажите капитал для торговли" />
                 </div>
             </div>
 
