@@ -40,7 +40,7 @@ npm start
 ![Демонстрация](./presentation/pres.gif)
 
 ### Видео:
-[Смотреть полное видео](./presentation/full_pres.mp4)
+[Смотреть полное видео](https://disk.yandex.ru/i/vhMv9HwtXMg0Bg)
 
 ## Доступные роуты
 
