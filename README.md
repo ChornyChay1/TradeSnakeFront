@@ -38,7 +38,7 @@ npm start
 ### Интерфейс симуляции:
 ![Интерфейс](./presentation/pres_sim.png)
 
-### GIF:
+### GIF(может долго загружаться):
 ![Демонстрация](./presentation/pres.gif)
 
 ### Видео:
