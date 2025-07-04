@@ -119,6 +119,13 @@ const BotsPageMain = () => {
                 </div>
 
                 {/* Таблицы для разных типов рынков, рендерятся только при наличии данных */}
+                {cryptoBotProfitData.length === 0 &&
+                    forexBotProfitData.length === 0 &&
+                    stocksBotProfitData.length === 0 && (
+                        <div className="bots-placeholder">
+                            <p>Здесь появится список ваших ботов после создания</p>
+                        </div>
+                    )}
                 {cryptoBotProfitData.length > 0 && (
                     <BotProfitTable title={"Криптовалютные боты"} bots={cryptoBotProfitData} is_open={true} />
                 )}

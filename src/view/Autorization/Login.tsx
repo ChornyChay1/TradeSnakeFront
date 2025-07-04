@@ -5,7 +5,7 @@ import "../../css/authorization/authorization.css";
 import back_arrow from "../../img/back-arrow.png";
 import CommonButton from "../Common/CommonButton";
 import AuthChecker from "./AuthChecker";
-
+import {server_address} from "../../config";
 const Login: React.FC = () => {
     const navigate = useNavigate();
     const [formData, setFormData] = useState<{ login: string; password: string }>({
@@ -23,7 +23,7 @@ const Login: React.FC = () => {
         e.preventDefault();
 
         try {
-            const response = await fetch("http://localhost:8000/users/login", {
+            const response = await fetch(server_address+"/users/login", {
                 method: "POST",
                 credentials: "include",
                 headers: {

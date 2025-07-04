@@ -134,12 +134,11 @@ const StatisticBlock: React.FC<StatisticBlockProps> = ({ statistics }) => {
                 <div className="statistics-grid">
                     <div className="statistic-labels">
                         <p>Изначальный баланс:</p>
-                        <p>Конечный баланс:</p>
+                        <p>Текущий баланс:</p>
                         <p>Количество cделок:</p>
                         <p>Количество ботов:</p>
                         <p>Задействовано брокеров:</p>
                         <p>Задействовано рынков:</p>
-                        <p>Общая прибыль:</p>
                     </div>
                     <div className="statistic-values">
                         <p>{statistics.start_money.toFixed(2)} USD</p>
@@ -151,9 +150,6 @@ const StatisticBlock: React.FC<StatisticBlockProps> = ({ statistics }) => {
                         <p>{statistics.bot_count}</p>
                         <p>{statistics.broker_count}</p>
                         <p>{statistics.market_count}</p>
-                        <p style={{color: getColor(statistics.total_profit)}}>
-                            {statistics.total_profit.toFixed(2)} USD
-                        </p>
                     </div>
                 </div>
             </div>

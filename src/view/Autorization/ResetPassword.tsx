@@ -5,7 +5,7 @@ import "../../css/authorization/authorization.css";
 import back_arrow from "../../img/back-arrow.png";
 import CommonButton from "../Common/CommonButton";
 import AuthChecker from "./AuthChecker";
-
+import {server_address} from "../../config";
 const Register: React.FC = () => {
     const navigate = useNavigate();
     const [formData, setFormData] = useState<{ email: string;}>({
@@ -22,7 +22,7 @@ const Register: React.FC = () => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            const response = await fetch("http://localhost:8000/users/change_password", {
+            const response = await fetch(server_address+"/users/change_password", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

@@ -1,4 +1,5 @@
 import { UserStatisticsResponse, MoneyHistoryEntry, TradeStatisticsEntry, TradeStatisticsResponse } from "../interfaces/user_interfaces";
+import {server_address} from "../config";
 
 export class UserViewModel {
     private static instance: UserViewModel;
@@ -38,7 +39,7 @@ export class UserViewModel {
 
     public async downloadMoneyHistoryReport(): Promise<void> {
         try {
-            const response = await fetch('http://localhost:8000/users/money_history/export', {
+            const response = await fetch(server_address + '/users/money_history/export', {
                 method: 'GET',
                 credentials: 'include',
             });
@@ -68,10 +69,10 @@ export class UserViewModel {
             throw error; // Пробрасываем ошибку для обработки в UI
         }
     }
-    // Метод для пополнения денег пользователя
+    // Метод для пополнения денег пользователяs
     public async addUserMoney(amount: number): Promise<void> {
         try {
-            const response = await fetch('http://localhost:8000/users/add_money', {
+            const response = await fetch(server_address + '/users/add_money', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -96,7 +97,7 @@ export class UserViewModel {
     public async fetchUserStatistics(): Promise<void> {
         try {
 
-            const response = await fetch('http://localhost:8000/users/statistics', {
+            const response = await fetch(server_address + '/users/statistics', {
                 method: 'GET',
                 credentials: 'include',
             });
@@ -115,7 +116,7 @@ export class UserViewModel {
     // Метод для получения истории денег пользователя
     public async fetchMoneyHistory(): Promise<void> {
         try {
-            const response = await fetch('http://localhost:8000/users/money_history', {
+            const response = await fetch(server_address + '/users/money_history', {
                 method: 'GET',
                 credentials: 'include',
             });
@@ -134,7 +135,7 @@ export class UserViewModel {
     // Метод для получения статистики трейдов пользователя
     public async fetchTradeStatistics(): Promise<void> {
         try {
-            const response = await fetch('http://localhost:8000/users/trade_statistics', {
+            const response = await fetch( server_address + '/users/trade_statistics', {
                 method: 'GET',
                 credentials: 'include',
             });

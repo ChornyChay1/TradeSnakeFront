@@ -133,7 +133,6 @@ const UpdateBotPage = () => {
     const fetchDataSimulation = async () => {
         setIsLoading(true);
         try {
-            console.log("сейчас откровенно симуляция")
             const startDateUnix = Math.floor(new Date(startDate).getTime() / 1000);
             const endDateUnix = Math.floor(new Date(endDate).getTime() / 1000);
 

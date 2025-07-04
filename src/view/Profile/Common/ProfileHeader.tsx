@@ -5,19 +5,25 @@ import "../../../css/profile/profile.css";
 import logo_img from "../../../img/profile-logo.svg";
 import site_url from "../../../utils/const";
 import Cookies from "js-cookie";
+import {server_address} from "../../../config";
 
 function CommonHeader() {
     const location = useLocation();
     const navigate = useNavigate();
 
-    const handleLogout = () => {
-        // Clear both tokens from cookies
-        Cookies.remove("access_token");
-        Cookies.remove("refresh_token");
-
-        // Optionally: Redirect to home page after logout
-        navigate("/");
+    const handleLogout = async () => {
+        try {
+            await fetch(server_address+`/users/logout`, {
+                method: "POST",
+                credentials: "include", // чтобы cookie отправлялись
+            });
+        } catch (error) {
+            console.error("Logout error", error);
+        } finally {
+            navigate("/"); // Перенаправляем в любом случае
+        }
     };
+
 
     return (
         <div className="profile-header">

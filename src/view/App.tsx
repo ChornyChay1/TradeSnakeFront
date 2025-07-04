@@ -18,23 +18,18 @@ function App() {
         <Router>
             <div className="App">
                 <Routes>
-
-
                     <Route path="/" element={<MainPage />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
                     <Route path="/activate/:token" element={<Activate />} />
                     <Route path="/reset-password" element={<ResetPassword />} />
                     <Route path="/change-password/:token" element={<ChangePassword />} />
-
                     <Route path="/profile" element={<MainProfile />} />
                     <Route path="/bots" element={<BotsPageMain />} />
                     <Route path="/bots" element={<BotsPageMain />} />
                     <Route path="/simulation" element={<SimulationPage />} />
                     <Route path="/create-bot" element={<StartBotPage />} />
                     <Route path="/bot-settings/:bot_id" element={<UpdateBotPage />} />
-
-
 
                 </Routes>
             </div>

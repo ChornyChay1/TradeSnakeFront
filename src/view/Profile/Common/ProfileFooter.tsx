@@ -8,9 +8,13 @@ function CommonFooter() {
     return (
         <div className="profile-footer">
             <div className="footer-row">
-                <p>ДонНТУ 2025</p>
-                <p>Ковалёв Артём Алексеевич</p>
-                <p>КМД-21</p>
+
+                    <p>© 2025 Ковалёв Артём Алексеевич</p>
+                    <p>Все права защищены.</p>
+
+
+                    <p>Контакт: <a href="mailto:edcroo10@gmail.com">edcroo10@gmail.com</a></p>
+
             </div>
         </div>
     );

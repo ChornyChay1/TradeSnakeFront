@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import {server_address} from "../../config";
 
 const AuthChecker: React.FC = () => {
     const navigate = useNavigate();
@@ -7,7 +8,7 @@ const AuthChecker: React.FC = () => {
     useEffect(() => {
         const checkAuth = async () => {
             try {
-                const response = await fetch("http://localhost:8000/users/auth", {
+                const response = await fetch(server_address+"/users/auth", {
                     method: "POST",
                     credentials: "include", // Отправка куков
                 });

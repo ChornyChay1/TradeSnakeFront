@@ -5,7 +5,7 @@ import "../../css/authorization/authorization.css";
 import back_arrow from "../../img/back-arrow.png";
 import AuthChecker from "./AuthChecker";
 import {wait} from "@testing-library/user-event/dist/utils";
-
+import {server_address} from "../../config";
 const Register: React.FC = () => {
     const navigate = useNavigate();
     const [formData, setFormData] = useState<{ name: string; email: string; password: string; passwordCheck: string }>({
@@ -30,7 +30,7 @@ const Register: React.FC = () => {
         }
 
         try {
-            const response = await fetch("http://localhost:8000/users/", {
+            const response = await fetch(server_address+"/users/", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

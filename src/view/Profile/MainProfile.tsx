@@ -148,10 +148,19 @@ const MainProfile = () => {
                     <div className="main-profile-content-statistic-col">
                         <div className="chart-profit-container">
                             <h2>График доходности</h2>
-                            <LineChart
-                                data={moneyHistory}
-                                symbolName="Баланс USD"
-                            />
+                            {
+                                moneyHistory.length > 0 ? (
+                                    <LineChart
+                                        data={moneyHistory}
+                                        symbolName="Баланс USD"
+                                    />
+                                ) : (
+                                    <div className="chart-placeholder">
+                                        <p>График появится после первых операций</p>
+
+                                    </div>
+                                )
+                            }
                         </div>
                         <div className="statistic-container-profile">
                             <StatisticBlock statistics={userStatistics}/>

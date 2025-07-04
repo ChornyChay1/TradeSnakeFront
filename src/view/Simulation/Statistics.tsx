@@ -61,8 +61,14 @@ const Statistics: React.FC<StatisticsProps> = ({ statistic, showStatistic, toggl
                 <div className="statistic-block">
                     <p>Количество покупок: {statistic.buy_trade_count}</p>
                     <p>Количество продаж: {statistic.sell_trade_count}</p>
+
+
                     <p>Сумма покупки: {statistic.buy_sum_broker.toFixed(2)}</p>
                     <p>Сумма продажи: {statistic.sell_sum_broker.toFixed(2)}</p>
+
+                    <p>Средняя сумма покупки: {(statistic.buy_sum_broker / statistic.buy_trade_count).toFixed(2)}</p>
+                    <p>Средняя сумма продажи: {(statistic.sell_sum_broker / statistic.sell_trade_count).toFixed(2)}</p>
+
                     <p>Комиссия: {statistic.commission.toFixed(2)}</p>
                     <p>Сумма покупки без комиссии: {statistic.buy_sum.toFixed(2)}</p>
                     <p>Сумма продажи без комиссии: {statistic.sell_sum.toFixed(2)}</p>

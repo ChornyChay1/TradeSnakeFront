@@ -6,6 +6,9 @@ export interface BotProfitResponse {
         market_name: string;
         market_type_name: string;
         create_time: string;
+        symbol_count: number;
+        current_price: number;
+        money:number;
         profit: number;
 }
 export interface IndicatorDetails{

@@ -1,4 +1,5 @@
 import { StrategyResult } from "../interfaces/chart_interfaces";
+import {server_address} from "../config";
 
 export class ChartViewModel {
     private static instance: ChartViewModel;
@@ -58,7 +59,7 @@ export class ChartViewModel {
 
     public async fetchStrategyResult(strategyId: number, brokerId: number,interval:string,money:number,symbol:string, strategyParams: Record<string, any>): Promise<void> {
         try {
-            const response = await fetch("http://localhost:8000/utils/execute_historical", {
+            const response = await fetch(server_address+ "/utils/execute_historical", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -115,7 +116,7 @@ export class ChartViewModel {
 
     public async fetchBotHistory(botId: number): Promise<void> {
         try {
-            const response = await fetch(`http://localhost:8000/utils/get_combined_data?bot_id=${botId}`, {
+            const response = await fetch( server_address + `/utils/get_combined_data?bot_id=${botId}`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -163,7 +164,7 @@ export class ChartViewModel {
 
     // Метод для получения всех стратегий
     public async fetchAllStrategies(): Promise<any[]> {
-        const url = "http://localhost:8000/utils/strategies";
+        const url = server_address + "/utils/strategies";
         const result = await this.fetchData(url);
         return result;
     }

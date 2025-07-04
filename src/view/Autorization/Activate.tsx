@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "../../css/authorization/authorization.css";
 import AuthChecker from "./AuthChecker";
+import {server_address} from "../../config";
 
 const Activate: React.FC = () => {
     const { token } = useParams<{ token: string }>();
@@ -13,7 +14,7 @@ const Activate: React.FC = () => {
     useEffect(() => {
         const activateAccount = async () => {
             try {
-                const response = await fetch(`http://localhost:8000/users/activate/${token}`, {
+                const response = await fetch(server_address+`/users/activate/${token}`, {
                     credentials: "include",
                     method: "GET",
                 });

@@ -5,6 +5,7 @@ import "../../css/authorization/authorization.css";
 import back_arrow from "../../img/back-arrow.png";
 import CommonButton from "../Common/CommonButton";
 import AuthChecker from "./AuthChecker";
+import {server_address} from "../../config";
 
 const ChangePassword: React.FC = () => {
     const navigate = useNavigate();
@@ -30,7 +31,7 @@ const ChangePassword: React.FC = () => {
         }
 
         try {
-            const response = await fetch("http://localhost:8000/users/change_password/"+token, {
+            const response = await fetch(server_address+"/users/change_password/"+token, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

@@ -4,7 +4,7 @@ import {
     BotProfitResponseFull,
     BrokerResponse
 } from "../interfaces/bots_interfaces";
-
+import {server_address} from "../config";
 export class BotsViewModel {
     private static instance: BotsViewModel;
 
@@ -76,7 +76,7 @@ export class BotsViewModel {
     }
     public async deleteBot(bot_id: number): Promise<void> {
         try {
-            const url = `http://localhost:8000/users/bots/bot/${bot_id}`;
+            const url = server_address+`/users/bots/bot/${bot_id}`;
 
             const response = await fetch(url, {
                 method: "POST",
@@ -104,7 +104,7 @@ export class BotsViewModel {
         broker_id: number
     ): Promise<any> {
         try {
-            const url = `http://localhost:8000/users/bots/bot/${bot_id}/update`;
+            const url = server_address+`/users/bots/bot/${bot_id}/update`;
 
             const requestData: BotCreateRequest = {
                 name,
@@ -138,7 +138,7 @@ export class BotsViewModel {
 
     public async fetchBotProfit(bot_id: number): Promise<BotProfitResponseFull> {
         try {
-            const url = new URL(`http://localhost:8000/users/bots/bot/profit/${bot_id}`);
+            const url = new URL(server_address+`/users/bots/bot/profit/${bot_id}`);
 
             const response = await fetch(url.toString(), {
                 method: "GET",
@@ -184,7 +184,7 @@ export class BotsViewModel {
 
 
         try {
-            const url = "http://localhost:8000/utils/analyze";
+            const url =server_address+ "/utils/analyze";
 
             const requestData = {
                 start_date: startDateUnix,
@@ -223,7 +223,7 @@ export class BotsViewModel {
         broker_id: number // Добавляем broker_id
     ): Promise<any> {
         try {
-            const url = "http://localhost:8000/users/bots/bot";
+            const url = server_address + "/users/bots/bot";
 
             const requestData: BotCreateRequest = {
                 name,
@@ -276,7 +276,7 @@ export class BotsViewModel {
     // Метод для получения данных о брокерах
     public async fetchBrokers(): Promise<void> {
         try {
-            const url = "http://localhost:8000/utils/brokers"; // Эндпоинт для получения брокеров
+            const url = server_address + "/utils/brokers"; // Эндпоинт для получения брокеров
 
             const response = await fetch(url, {
                 method: "GET",
@@ -302,7 +302,7 @@ export class BotsViewModel {
     // Метод для приостановки бота
     public async pauseBot(bot_id: number): Promise<void> {
         try {
-            const url = `http://localhost:8000/users/bots/bot/${bot_id}/pause`;
+            const url = server_address + `/users/bots/bot/${bot_id}/pause`;
 
             const response = await fetch(url, {
                 method: "POST",
@@ -323,7 +323,7 @@ export class BotsViewModel {
     // Метод для продолжения работы бота
     public async continueBot(bot_id: number): Promise<void> {
         try {
-            const url = `http://localhost:8000/users/bots/bot/${bot_id}/continue`;
+            const url = server_address +`/users/bots/bot/${bot_id}/continue`;
 
             const response = await fetch(url, {
                 method: "POST",

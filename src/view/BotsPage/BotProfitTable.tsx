@@ -61,8 +61,12 @@ export default function BotProfitTable({ title, bots, is_open = false }: Props) 
                             <tr>
                                 <th>Название</th>
                                 {!isMobile && <th>Пара</th>}
+                                {!isMobile && <th>Стоимость 1 единицы</th>}
+
                                 <th>Брокер</th>
                                 {!isMobile && <th>Дата создания</th>}
+                                {!isMobile && <th>Единиц валюты</th>}
+                                {!isMobile && <th>Деньги</th>}
                                 <th>Прибыль</th>
                                 <th></th>
                             </tr>
@@ -76,8 +80,13 @@ export default function BotProfitTable({ title, bots, is_open = false }: Props) 
                                 >
                                     <td>{bot.bot_name}</td>
                                     {!isMobile && <td>{bot.symbol}</td>}
+                                    {!isMobile && <td>{bot.current_price}$</td>}
+
                                     <td>{isMobile ? bot.broker_name.substring(0, 3) : bot.broker_name}</td>
                                     {!isMobile && <td>{bot.create_time}</td>}
+                                    {!isMobile && <td>{bot.symbol_count.toFixed(4)}</td>}
+                                    {!isMobile && <td>{bot.money.toFixed(4)}$</td>}
+
                                     <td className="font-bold">{bot.profit.toFixed(2)}$</td>
                                     <td>
                                         <img

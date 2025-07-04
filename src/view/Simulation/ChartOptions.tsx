@@ -34,11 +34,15 @@ const ChartOptions: React.FC<ChartOptionsProps> = ({
     const [showSettings, setShowSettings] = useState(false);
     const [tempStartDate, setTempStartDate] = useState(startDate);
     const [tempEndDate, setTempEndDate] = useState(endDate);
+    const [datesChanged, setDatesChanged] = useState(false);
 
     useEffect(() => {
         setTempStartDate(startDate);
         setTempEndDate(endDate);
     }, [startDate, endDate]);
+    useEffect(() => {
+        setDatesChanged(tempStartDate !== startDate || tempEndDate !== endDate);
+    }, [tempStartDate, tempEndDate, startDate, endDate]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -236,28 +240,41 @@ const ChartOptions: React.FC<ChartOptionsProps> = ({
             </div>
 
             <div className="option">
-                <div className="input-group">
-                    <label htmlFor="start-date">Дата начала:</label>
-                    <input
-                        id="start-date"
-                        type="date"
-                        value={tempStartDate}
-                        onChange={handleStartDateChange}
-                        onBlur={handleStartDateBlur}
-                    />
-                </div>
+                    <div className="input-group">
+                        <label htmlFor="start-date">Дата начала:</label>
+                        <input
+                            id="start-date"
+                            type="date"
+                            value={tempStartDate}
+                            onChange={(e) => setTempStartDate(e.target.value)}
+                        />
+                    </div>
 
-                <div className="input-group">
-                    <label htmlFor="end-date">Дата конца:</label>
-                    <input
-                        id="end-date"
-                        type="date"
-                        value={tempEndDate}
-                        onChange={handleEndDateChange}
-                        onBlur={handleEndDateBlur}
-                        max={getMaxEndDate(tempStartDate, interval)}
-                    />
-                </div>
+                    <div className="input-group">
+                        <label htmlFor="end-date">Дата конца:</label>
+                        <input
+                            id="end-date"
+                            type="date"
+                            value={tempEndDate}
+                            onChange={(e) => setTempEndDate(e.target.value)}
+                            max={getMaxEndDate(tempStartDate, interval)}
+                        />
+                    </div>
+
+                {datesChanged && (
+                    <div className="date-confirm-group">
+                        <button
+                            className="simulation-date-confirm-button"
+                            onClick={() => {
+                                const validatedEnd = validateEndDate(tempStartDate, tempEndDate, interval);
+                                setStartDate(tempStartDate);
+                                setEndDate(validatedEnd);
+                            }}
+                        >
+                            Подтвердить
+                        </button>
+                    </div>
+                )}
             </div>
 
             <div className="option">

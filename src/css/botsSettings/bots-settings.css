@@ -17,6 +17,23 @@
     padding:20px;
     height: auto;
 }
+.date-confirm-group {
+    display: flex;
+    justify-content: flex-end;
+    margin-top:10px;
+
+    button {
+        background: #ffffff;
+        width:auto;
+    transition: 0.3s;
+    }
+
+    button:hover {
+        background-color: #000000;
+        color: white;
+        transform: scale(1.05);
+    }
+}
 .bot-settings-container-workarea{
     display: flex;
     flex-direction: row;
@@ -447,6 +464,7 @@
         height: 100%;
 
     }
+
     .visualisation-container-chart{
         display: flex;
         flex-direction: column;
