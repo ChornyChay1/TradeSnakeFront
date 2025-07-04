@@ -29,8 +29,8 @@ TradeSnake — клиентская часть системы для тести�
 ## Быстрый старт
 
 ```bash
-git clone https://github.com/yourusername/yourrepo.git
-cd yourrepo
+git clone https://github.com/ChornyChay1/TradeSnakeFront.git
+cd diplom-teset
 npm install
 npm start
 ```
