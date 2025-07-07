@@ -69,8 +69,8 @@ npm start
 ---
 ## Связанные репозитории
 
-BackEnd основной: [BackEndMain](https://github.com/ChornyChay1/TradeSnakeBackPython)  
-BackEnd торговый сервис: [BackEndС](https://github.com/ChornyChay1/TradeSnakeBackendC)  
+Backend основной: [BackEndMain](https://github.com/ChornyChay1/TradeSnakeBackPython)  
+Backend торговый сервис: [BackEndС](https://github.com/ChornyChay1/TradeSnakeBackendC)  
 
 
  
