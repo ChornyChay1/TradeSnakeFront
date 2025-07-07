@@ -14,6 +14,17 @@ TradeSnake — система для тестирования торговых �
 Диаграммы: [Recharts](https://recharts.org/en-US/)  
 Используется TypeScript для типизации.
 
+---
+## Быстрый старт
+
+```bash
+git clone https://github.com/ChornyChay1/TradeSnakeFront.git
+cd diplom-teset
+npm install
+npm start
+```
+ 
+---
 ## Используемые библиотеки
 
 - React  
@@ -26,14 +37,8 @@ TradeSnake — система для тестирования торговых �
 - React Icons  
 - Moment.js  
 
-## Быстрый старт
+---
 
-```bash
-git clone https://github.com/ChornyChay1/TradeSnakeFront.git
-cd diplom-teset
-npm install
-npm start
-```
 ##  Презентация
 ### Интерфейс симуляции:
 ![Интерфейс](./presentation/pres_sim.png)
@@ -44,6 +49,7 @@ npm start
 ### Видео:
 [Смотреть полное видео](https://disk.yandex.ru/i/vhMv9HwtXMg0Bg)
 
+---
 ## Доступные роуты
 
 | Путь                    | Описание                    |
@@ -60,8 +66,12 @@ npm start
 | `/create-bot`           | Создание нового бота        |
 | `/bot-settings/:bot_id` | Настройки конкретного бота  |
 
-## Автор и права
+---
+## Связанные репозитории
 
-Артём Ковалёв © 2025  
-Все права защищены.
+BackEnd основной: [BackEndMain](https://github.com/ChornyChay1/TradeSnakeBackPython)  
+BackEnd торговый сервис: [BackEndС](https://github.com/ChornyChay1/TradeSnakeBackendC)  
+
+
+ 
 
